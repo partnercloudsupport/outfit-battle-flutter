@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(CustomIcons.swords_crossed, color: Colors.blue),
             title: Text(
-              "Battle",
+              "Battles",
               style: TextStyle(
                 color: Colors.blue,
               ),
