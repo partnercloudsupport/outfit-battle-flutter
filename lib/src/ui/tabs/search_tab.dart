@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PlaceholderWidget extends StatelessWidget {
- final Color color;
+class SearchTab extends StatelessWidget {
 
- PlaceholderWidget(this.color);
+  SearchTab();
 
  @override
  Widget build(BuildContext context) {
    return Container(
-     color: color,
+     color: Colors.greenAccent,
    );
  }
 }
