@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outfit_battle/src/resources/custom_icons.dart';
 
 class BattlesTab extends StatelessWidget {
 
@@ -22,8 +23,23 @@ class BattlesTab extends StatelessWidget {
  Expanded buildBattleButton() {
    return Expanded(
           flex: 3,
-          child: Container(
-            color: Colors.indigoAccent,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              RaisedButton.icon(
+                onPressed: (){},
+                color: Colors.yellow,
+                 elevation: 4.0,
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                label: 
+                    Text("Battle"), 
+                    icon: Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+                      child: Icon(CustomIcons.swords_crossed),
+                    ),
+        ),
+        
+            ],
           ),
         );
  }

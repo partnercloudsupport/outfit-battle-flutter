@@ -10,9 +10,14 @@ import 'package:outfit_battle/src/resources/custom_icons.dart';
  List<BottomNavigationBarItem> bottomNavigationItemList() {
    return [           
         BottomNavigationBarItem(
-          icon: Icon(CustomIcons.swords_crossed, 
-          color: Colors.black,
-          ),
+          icon: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Icon(CustomIcons.swords_crossed,
+                      color: Colors.black,),
+                    ),
+          // icon: Icon(CustomIcons.swords_crossed, 
+          
+          // ),
           title: Text(
             "Battles",
             style: TextStyle(
