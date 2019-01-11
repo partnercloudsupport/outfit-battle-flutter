@@ -10,6 +10,9 @@ class App extends StatelessWidget {
       ]);    
     return MaterialApp(
         title: "Outfit Battle",
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+        fontFamily: 'Josefin',),
         home: Home(),
       );
   }

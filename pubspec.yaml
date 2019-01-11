@@ -40,7 +40,13 @@ flutter:
     - family: Swords
       fonts:
         - asset: fonts/Swords.ttf
-        
+    - family: Amatic
+      fonts:
+        - asset: fonts/AmaticSCBold.ttf
+    - family: Josefin
+      fonts:
+        - asset: fonts/JosefinSansRegular.ttf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

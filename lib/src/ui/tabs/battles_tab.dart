@@ -17,8 +17,9 @@ class BattlesTab extends StatelessWidget {
                     Text(
                      "Battles",
                      style: TextStyle(
-                       fontSize: 16.0,
-                     ),
+                       fontFamily: 'Amatic',
+                       fontSize: 32.0
+                     )
                     ),
                   ],
                 ),

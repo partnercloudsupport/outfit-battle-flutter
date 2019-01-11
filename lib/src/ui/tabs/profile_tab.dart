@@ -9,25 +9,27 @@ class ProfileTab extends StatelessWidget {
    return Scaffold(
       body: Column(
         children: <Widget>[
-          Flexible(
-            flex: 2,
+          Expanded(
+          flex: 1,
+            child: 
+                Row(
+                  children: <Widget>[
+                    Text(
+                     "Profile",
+                     style: TextStyle(
+                       fontFamily: 'Amatic',
+                       fontSize: 32.0
+                     )
+                    ),
+                  ],
+                ),
+          ),
+          Expanded(
+            flex: 9,
             child: Container(
-              color: Colors.red,
+              color: Colors.blue,
             ),
           ),
-          Flexible(
-            flex: 1,
-            child: Container(
-              color: Colors.purple,
-            ),
-          ),
-          Flexible(
-            flex: 3,
-            child: Container(
-              color: Colors.green,
-            ),
-          ),
-          Spacer(),
         ],
       ),
     );
