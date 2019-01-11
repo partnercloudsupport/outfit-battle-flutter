@@ -9,29 +9,49 @@ class BattlesTab extends StatelessWidget {
    return Scaffold(
       body: Column(
         children: <Widget>[
-          Expanded(
-          flex: 1,
-            child: 
-                Row(
-                  children: <Widget>[
-                    Text(
-                     "Battles",
-                     style: TextStyle(
-                       fontFamily: 'Amatic',
-                       fontSize: 32.0
-                     )
-                    ),
-                  ],
-                ),
-          ),
-          Expanded(
-            flex: 9,
-            child: Container(
-              color: Colors.blue,
-            ),
-          ),
+          buildTitleBar(),
+          Spacer(),
+          buildBattleBox(),
+          Spacer(),
+          buildBattleButton(),
         ],
       ),
     );
+ }
+
+ Expanded buildBattleButton() {
+   return Expanded(
+          flex: 3,
+          child: Container(
+            color: Colors.indigoAccent,
+          ),
+        );
+ }
+
+ Expanded buildBattleBox() {
+   return Expanded(
+          flex: 13,
+          child: Container(
+            color: Colors.blue,
+          ),
+        );
+ }
+
+ Expanded buildTitleBar() {
+   return Expanded(
+        flex: 2,
+          child: 
+              Row(
+                children: <Widget>[
+                  Text(
+                   "Battles",
+                   style: TextStyle(
+                     fontFamily: 'Amatic',
+                     fontSize: 32.0
+                   )
+                  ),
+                ],
+              ),
+        );
  }
 }
