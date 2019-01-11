@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SafeArea(child: Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 0.0)
-        child: _children[_currentIndex],
+        child: _children[_currentIndex], 
       )),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
