@@ -101,13 +101,12 @@ Expanded buildUserIdentities() {
                     },
                     loadFailedCallback: () {
                       print('Oh, no!');
-                    }
+                    },
+                    useDiskCache: true,
                   ),
                   loadingWidget: const CircularProgressIndicator(),
                   fit: BoxFit.contain,
                   placeholder: const Icon(Icons.refresh),
-                  width: 400.0,
-                  height: 300.0,
                   enableRefresh: true,
                 ),
                 
