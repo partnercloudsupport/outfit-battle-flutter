@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:outfit_battle/src/resources/custom_icons.dart';
+import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart';
+import 'package:flutter_advanced_networkimage/transition_to_image.dart';
+import 'package:flutter_advanced_networkimage/zoomable_list.dart';
+
 
 class BattlesTab extends StatelessWidget {
   BattlesTab();
@@ -90,17 +94,27 @@ Expanded buildUserIdentities() {
                       child: AspectRatio(
           aspectRatio: 3 / 4,
           child: new Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                fit: BoxFit.fitWidth,
-                alignment: FractionalOffset.topCenter,
-                image: new NetworkImage(battlerImageUrl),
-              )
+            child: TransitionToImage(
+                  AdvancedNetworkImage(battlerImageUrl,
+                    loadedCallback: () {
+                      print('It works!');
+                    },
+                    loadFailedCallback: () {
+                      print('Oh, no!');
+                    }
+                  ),
+                  loadingWidget: const CircularProgressIndicator(),
+                  fit: BoxFit.contain,
+                  placeholder: const Icon(Icons.refresh),
+                  width: 400.0,
+                  height: 300.0,
+                  enableRefresh: true,
+                ),
+                
+              //NetworkImage(battlerImageUrl),
             ),
           ),
         ),
-                    
-                  ),
     );
   }
 
@@ -120,7 +134,7 @@ Expanded buildUserIdentities() {
       flex: 2,
       child: Row(
         children: <Widget>[
-          Text("Battle",
+          Text("Battles",
               style: TextStyle(fontFamily: 'Amatic', fontSize: 32.0)),
         ],
       ),
