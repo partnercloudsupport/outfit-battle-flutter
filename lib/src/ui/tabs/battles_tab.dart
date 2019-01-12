@@ -56,10 +56,110 @@ class BattlesTab extends StatelessWidget {
   Expanded buildBattleBox() {
     return Expanded(
       flex: 14,
-      child: Container(
-        color: Colors.blue,
+      child: Card(
+        child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                buildUserIdentities(),
+                buildBattlePreviewLayout(),
+                buildHashtagsLayout(),
+              ],
+            ),
       ),
     );
+  }
+
+  Padding buildHashtagsLayout() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 8.0, 16.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child:
+              Text("#fridayChilling"),
+              ),
+          Expanded(
+            flex: 1,
+            child:
+              Text("#fridayChilling"),              
+              ),
+      ],
+    ),
+    );
+  }
+
+  Expanded buildBattlePreviewLayout() {
+    return Expanded(
+                flex: 1,
+                child: Center(
+                  child: (
+                    Container(color: Colors.limeAccent,)
+                  ),
+                ),
+              );
+  }
+
+  Padding buildUserIdentities() {
+    return Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 16.0, 8.0, 16.0),
+                child: Row(
+                  children: <Widget>[
+  new Expanded(
+    flex: 1,
+    child:
+                          Row(  
+                          children: <Widget>[
+                            new Container(
+                              height: 40.0,
+                              width: 40.0,
+                              decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: new NetworkImage(
+                                        "https://pbs.twimg.com/profile_images/916384996092448768/PF1TSFOE_400x400.jpg")),
+                              ),
+                            ),
+                            new SizedBox(
+                              width: 10.0,
+                            ),
+                            new Text(
+                              "janeDoe",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),),
+                         new Expanded(
+    flex: 1,
+    child:
+                          Row(  
+                          children: <Widget>[
+                            new Container(
+                              height: 40.0,
+                              width: 40.0,
+                              decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: new NetworkImage(
+                                        "https://pbs.twimg.com/profile_images/916384996092448768/PF1TSFOE_400x400.jpg")),
+                              ),
+                            ),
+                            new SizedBox(
+                              width: 10.0,
+                            ),
+                            new Text(
+                              "johnDoe",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),),
+],
+                ),
+              );
   }
 
   Expanded buildTitleBar() {
