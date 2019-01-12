@@ -22,22 +22,34 @@ class BattlesTab extends StatelessWidget {
   Expanded buildBattleButton() {
     return Expanded(
       flex: 2,
-      child: Center(
-        child: 
-             RaisedButton.icon(
-              onPressed: () {},
-              color: Colors.black,
-              elevation: 4.0,
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0)),
-              label: Text("Battle", style: TextStyle(color: Colors.white),),
-              icon: Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+      // child: Center(
+      //   child: 
+      //        RaisedButton.icon(
+      //         onPressed: () {},
+      //         color: Colors.black,
+      //         elevation: 4.0,
+      //         shape: new RoundedRectangleBorder(
+      //             borderRadius: new BorderRadius.circular(30.0)),
+      //         label: Text("Battle", style: TextStyle(color: Colors.white),),
+      //         icon: Padding(
+      //           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+      //           child: Icon(CustomIcons.swords_crossed, 
+      //           color: Colors.white,),
+      //         ),
+      //          ),
+      // ),
+        child : FloatingActionButton(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.black,
+          child: Padding(
+                padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
                 child: Icon(CustomIcons.swords_crossed, 
                 color: Colors.white,),
               ),
-               ),
-      ),
+          onPressed: (){},
+        )
+      // ...FloatingActionButton properties...
+    // ),
     );
   }
 
