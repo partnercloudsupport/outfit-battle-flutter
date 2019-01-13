@@ -116,7 +116,7 @@ class BattlesTab extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
          children: <Widget>[
-            buildBattlerAvatar( "htps://loremflickr.com/300/400/model,girl?lock=37", battlerNumber: "2",),
+            buildBattlerAvatar( "https://loremflickr.com/300/400/model,girl?lock=37", battlerNumber: "2",),
             battlerUsername("jasmine3rd"),
          ], 
         )
@@ -284,7 +284,9 @@ class BattlesTab extends StatelessWidget {
                   },
                   useDiskCache: true,
                 ),
-                loadingWidget: const CircularProgressIndicator(),
+            loadingWidget: const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black45),
+              ),
                 fit: BoxFit.cover,
                 placeholder: const Icon(Icons.refresh),
                 enableRefresh: true,
@@ -375,7 +377,9 @@ double getMinDiameter() {
            },
            useDiskCache: true,
          ),
-         loadingWidget: const CircularProgressIndicator(),
+         loadingWidget: const CircularProgressIndicator(
+           valueColor: AlwaysStoppedAnimation<Color>(Colors.black45),
+         ),
          fit: BoxFit.cover,
          placeholder:  CircleAvatar(
            backgroundColor: Colors.black54,
