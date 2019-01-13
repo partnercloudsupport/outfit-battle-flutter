@@ -3,9 +3,9 @@ import 'package:outfit_battle/src/ui/widgets/battle_tab_widgets/battle_image_car
 
 Row buildBattleImagesRow() {
     String firstBattlerImageUrl =
-        "https://loremflickr.com/300/400/model,girl?lock=37";
+        "https://loremflickr.com/300/400/model,girl?lock=34";
     String secondBattlerImageUrl =
-        "https://loremflickr.com/300/400/model,girl?lock=5";
+        "https://loremflickr.com/300/400/model,girl?lock=1";
 
     return Row(
       children: <Widget>[
