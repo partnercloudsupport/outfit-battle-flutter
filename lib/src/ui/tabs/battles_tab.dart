@@ -4,21 +4,39 @@ import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart
 import 'package:flutter_advanced_networkimage/transition_to_image.dart';
 
 class BattlesTab extends StatelessWidget {
-  BattlesTab();
+  BattlesTab({this.radius, this.maxRadius, this.minRadius});
+
+   final double radius;
+  final double minRadius;
+  final double maxRadius;
+  static const double _defaultRadius = 20.0;
+  static const double _defaultMinRadius = 0.0;
+  static const double _defaultMaxRadius = double.infinity;
+
+double get _minDiameter {
+    if (radius == null && minRadius == null && maxRadius == null) {
+      return _defaultRadius * 2.0;
+    }
+    return 2.0 * (radius ?? minRadius ?? _defaultMinRadius);
+  }
+
+  double get _maxDiameter {
+    if (radius == null && minRadius == null && maxRadius == null) {
+      return _defaultRadius * 2.0;
+    }
+    return 2.0 * (radius ?? maxRadius ?? _defaultMaxRadius);
+  }
+
 
   @override
-  Widget build(BuildContext context) {
-    String firstBattlerImageUrl =
-        "https://loremflickr.com/300/400/model,girl?lock=37";
-    String secondBattlerImageUrl =
-        "https://loremflickr.com/300/400/model,girl?lock=5";
+  Widget build(BuildContext context) {        
 
     return Scaffold(
       body: Column(
         children: <Widget>[
           buildTitleBar(),
           Spacer(),
-          buildBattleBox(firstBattlerImageUrl, secondBattlerImageUrl),
+          buildBattleBox(),
           Spacer(),
           buildBattleButton(),
         ],
@@ -43,8 +61,7 @@ class BattlesTab extends StatelessWidget {
         ));
   }
 
-  Expanded buildBattleBox(
-      String firstBattlerImageUrl, String secondBattlerImageUrl) {
+  Expanded buildBattleBox() {
     return Expanded(
       flex: 14,
       child: Card(
@@ -54,8 +71,7 @@ class BattlesTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             buildUserIdentities(),
-            buildBattlePreviewLayout(
-                firstBattlerImageUrl, secondBattlerImageUrl),
+            buildBattlePreviewLayout(),
             buildHashtagsLayout(),
           ],
         ),
@@ -67,7 +83,7 @@ class BattlesTab extends StatelessWidget {
     String firstBattlerImageUrl =
         "https://loremflickr.com/300/400/model,girl?lock=37";
     String secondBattlerImageUrl =
-        "https://loremflickr.om/300/400/model,girl?lock=5";
+        "https://loremflickr.com/300/400/model,girl?lock=5";
     return Expanded(
       flex: 2,
       child: Padding(
@@ -149,9 +165,14 @@ class BattlesTab extends StatelessWidget {
     }
 
   Container battlerAvatar(String battlerProfilePictureUrl, {String battlerNumber}) {
+  
     return Container(
-    width: 30.0,
-    height: 30.0,
+    constraints: BoxConstraints(
+        minHeight: _minDiameter,
+        minWidth: _minDiameter,
+        maxWidth: _maxDiameter,
+        maxHeight: _maxDiameter,
+      ),
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: Colors.blue,
@@ -188,13 +209,12 @@ class BattlesTab extends StatelessWidget {
   }
 
 
-  Expanded buildBattlePreviewLayout(
-      String firstBattlerImageUrl, String secondBattlerImageUrl) {
+  Expanded buildBattlePreviewLayout() {
     return Expanded(
       flex: 6,
       child: Stack(
         children: <Widget>[
-          imagesRow(firstBattlerImageUrl, secondBattlerImageUrl),
+          imagesRow(),
           votingLayout(),
           previousButton(),
           nextButton(),
@@ -295,7 +315,12 @@ class BattlesTab extends StatelessWidget {
     );
   }
 
-  Row imagesRow(String firstBattlerImageUrl, String secondBattlerImageUrl) {
+  Row imagesRow() {
+    String firstBattlerImageUrl =
+        "https://loremflickr.com/300/400/model,girl?lock=37";
+    String secondBattlerImageUrl =
+        "https://loremflickr.com/300/400/model,girl?lock=5";
+
     return Row(
       children: <Widget>[
         buildImageCard(firstBattlerImageUrl),
@@ -330,8 +355,7 @@ class BattlesTab extends StatelessWidget {
                 placeholder: const Icon(Icons.refresh),
                 enableRefresh: true,
               ),
-
-              //NetworkImage(battlerImageUrl),
+    //NetworkImage(battlerImageUrl),
             ),
           ),
         ),
