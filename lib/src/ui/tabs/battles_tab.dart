@@ -133,15 +133,51 @@ Expanded buildUserIdentities() {
                           heightFactor: 0.2,
                           child: Container(
                             decoration: new BoxDecoration(
-                              color: Colors.black45,
-                              // color: Colors.black45,
-                              shape: BoxShape.circle,
+                              color: Colors.black12,
+                              shape: BoxShape.rectangle,
                           ),
-                            // color: Colors.green,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                firstBattlerVoteButton(),
+                                secondBattlerVoteButton(),
+                              ],
+                            ),
                           ),
                         ),
                     );
   }
+
+  Container firstBattlerVoteButton() {
+    return Container(
+                        decoration: new BoxDecoration(
+                          color: Colors.white30,
+                          // color: Colors.pink,
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          color: Colors.black,
+                          icon: Icon(Icons.check),
+                          onPressed: (){},
+                        ),
+                        );
+  }
+
+  Container secondBattlerVoteButton() {
+    return Container(
+                        decoration: new BoxDecoration(
+                          color: Colors.white30,
+                          // color: Colors.pink,
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          color: Colors.black,
+                          icon: Icon(Icons.check),
+                          onPressed: (){},
+                        ),
+                        );
+  }
+  
 
   Row imagesRow(String firstBattlerImageUrl, String secondBattlerImageUrl) {
     return Row(
