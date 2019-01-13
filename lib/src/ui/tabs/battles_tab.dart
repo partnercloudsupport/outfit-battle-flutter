@@ -4,29 +4,7 @@ import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart
 import 'package:flutter_advanced_networkimage/transition_to_image.dart';
 
 class BattlesTab extends StatelessWidget {
-  BattlesTab({this.radius, this.maxRadius, this.minRadius});
-
-   final double radius;
-  final double minRadius;
-  final double maxRadius;
-  static const double _defaultRadius = 20.0;
-  static const double _defaultMinRadius = 0.0;
-  static const double _defaultMaxRadius = double.infinity;
-
-double get _minDiameter {
-    if (radius == null && minRadius == null && maxRadius == null) {
-      return _defaultRadius * 2.0;
-    }
-    return 2.0 * (radius ?? minRadius ?? _defaultMinRadius);
-  }
-
-  double get _maxDiameter {
-    if (radius == null && minRadius == null && maxRadius == null) {
-      return _defaultRadius * 2.0;
-    }
-    return 2.0 * (radius ?? maxRadius ?? _defaultMaxRadius);
-  }
-
+  BattlesTab();
 
   @override
   Widget build(BuildContext context) {        
@@ -138,7 +116,7 @@ double get _minDiameter {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
          children: <Widget>[
-            battlerAvatar(firstBattlerProfilePictureUrl, battlerNumber: "1", ),
+            buildBattlerAvatar( "htps://loremflickr.com/300/400/model,girl?lock=37", battlerNumber: "2",),
             battlerUsername("jasmine3rd"),
          ], 
         )
@@ -156,58 +134,14 @@ double get _minDiameter {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
          children: <Widget>[
-            battlerAvatar(secondBattlerProfilePictureUrl, battlerNumber: "2", ),
+            buildBattlerAvatar( "https://loremflickr.com/300/400/model,girl?lock=5", battlerNumber: "2",),
             battlerUsername("swoosh_suzzy"),
-         ], 
+         
+        ], 
         )
-      ),
+    )
     );
     }
-
-  Container battlerAvatar(String battlerProfilePictureUrl, {String battlerNumber}) {
-  
-    return Container(
-    constraints: BoxConstraints(
-        minHeight: _minDiameter,
-        minWidth: _minDiameter,
-        maxWidth: _maxDiameter,
-        maxHeight: _maxDiameter,
-      ),
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      color: Colors.blue,
-    ),
-    // margin: const EdgeInsets.only(top: 32.0, left: 16.0),
-    // padding: const EdgeInsets.all(3.0),
-    child: ClipOval(
-          child: TransitionToImage(
-                AdvancedNetworkImage(
-                  battlerProfilePictureUrl,
-                  loadedCallback: () {
-                    // showVoteButton();
-                    print('Image loaded!');
-                  },
-                  loadFailedCallback: () {
-                    // hideVoteButton();
-                    print('Image load failed!');
-                  },
-                  useDiskCache: true,
-                ),
-                loadingWidget: const CircularProgressIndicator(),
-                fit: BoxFit.cover,
-                placeholder:  CircleAvatar(
-                  backgroundColor: Colors.black54,
-                  child: Text(battlerNumber, 
-                  style: TextStyle(color: Colors.white,),
-                ),
-                ),
-                enableRefresh: true,
-              
-              ),
-    ),
-    );
-  }
-
 
   Expanded buildBattlePreviewLayout() {
     return Expanded(
@@ -384,3 +318,73 @@ double get _minDiameter {
     );
   }
 }
+
+// class BattlerAvatar extends StatelessWidget {
+//    BattlerAvatar(String battlerProfilePictureUrl, {Key key,this.radius,
+//     this.minRadius,
+//     this.maxRadius,}) 
+//     : assert(radius == null || (minRadius == null && maxRadius == null)),
+//         super(key: key);
+
+Widget buildBattlerAvatar(String battlerProfilePictureUrl, {String battlerNumber, radius,
+    minRadius,
+    maxRadius,})
+{
+ double radius;
+ double minRadius;
+ double maxRadius;
+  const double _defaultRadius = 20.0;
+  const double _defaultMinRadius = 0.0;
+  const double _defaultMaxRadius = double.infinity;
+
+double getMinDiameter() {
+    if (radius == null && minRadius == null && maxRadius == null) {
+      return _defaultRadius * 2.0;
+    }
+    return 2.0 * (radius ?? minRadius ?? _defaultMinRadius);
+  }
+
+  double getMaxDiameter() {
+    if (radius == null && minRadius == null && maxRadius == null) {
+      return _defaultRadius * 2.0;
+    }
+    return 2.0 * (radius ?? maxRadius ?? _defaultMaxRadius);
+  }  
+
+    return Container(
+    constraints: BoxConstraints(
+        minHeight: getMinDiameter(),
+        minWidth: getMinDiameter(),
+        maxWidth: getMaxDiameter(),
+        maxHeight: getMaxDiameter(),
+      ),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+    ),
+    child: ClipOval(
+          child: TransitionToImage(
+         AdvancedNetworkImage(
+          battlerProfilePictureUrl,
+           loadedCallback: () {
+             // showVoteButton();
+             print('Image loaded!');
+           },
+           loadFailedCallback: () {
+             // hideVoteButton();
+             print('Image load failed!');
+           },
+           useDiskCache: true,
+         ),
+         loadingWidget: const CircularProgressIndicator(),
+         fit: BoxFit.cover,
+         placeholder:  CircleAvatar(
+           backgroundColor: Colors.black54,
+           child: Text(battlerNumber,
+           style: TextStyle(color: Colors.white,),
+         ),
+         ),
+      enableRefresh: true,),
+       
+       ),
+    );
+  }
