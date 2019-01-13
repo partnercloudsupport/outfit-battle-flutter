@@ -88,7 +88,10 @@ Expanded buildUserIdentities() {
     return Align(
       alignment: Alignment(-1.1, 0.0),
                       child: Container(
-                        color: Colors.black45,
+                        decoration: new BoxDecoration(
+                          color: Colors.black45,
+                          shape: BoxShape.circle,
+                        ),
                         child: IconButton(
                            color: Colors.white70,
                           icon: Icon(Icons.navigate_before),
@@ -102,7 +105,10 @@ Expanded buildUserIdentities() {
     return Align(
       alignment: Alignment(1.1, 0.0),
                       child: Container(
-                        color: Colors.black45,
+                        decoration: new BoxDecoration(
+                          color: Colors.black45,
+                          shape: BoxShape.circle,
+                        ),
                         child: IconButton(
                            color: Colors.white70,
                           icon: Icon(Icons.navigate_next),
@@ -115,8 +121,7 @@ Expanded buildUserIdentities() {
   
 
   Container votingLayout() {
-    return Container(
-                      constraints: BoxConstraints(
+    return Container( constraints: BoxConstraints(
                           maxHeight: double.infinity,
                           maxWidth: double.infinity,
                           minWidth: double.infinity,
@@ -127,7 +132,12 @@ Expanded buildUserIdentities() {
                           widthFactor: 0.4,
                           heightFactor: 0.2,
                           child: Container(
-                            color: Colors.green,
+                            decoration: new BoxDecoration(
+                              color: Colors.black45,
+                              // color: Colors.black45,
+                              shape: BoxShape.circle,
+                          ),
+                            // color: Colors.green,
                           ),
                         ),
                     );
