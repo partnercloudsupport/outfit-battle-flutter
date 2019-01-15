@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outfit_battle/src/ui/widgets/search_tab_widgets/popular_hashtags_layout.dart';
 import 'package:outfit_battle/src/ui/widgets/title_bar.dart';
 
 class SearchTab extends StatelessWidget {
@@ -11,15 +12,21 @@ class SearchTab extends StatelessWidget {
       body: Column(
         children: <Widget>[
           buildTitleBar("Search"),
-          Expanded(
-            flex:18,
-            child: Container(
-              color: Colors.black38,
-            ),
-         ),
+          buildSearchBar(),
+          buildPopularHashtagsLayout(),
         ],
       ),
     );
+  }
+
+
+  Expanded buildSearchBar() {
+    return Expanded(
+          flex: 2,
+          child: Container(
+            color: Colors.greenAccent,
+          ),
+        );
   }
 }
 
