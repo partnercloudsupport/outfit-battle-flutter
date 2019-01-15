@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:outfit_battle/src/ui/widgets/title_bar.dart';
+import 'package:outfit_battle/src/ui/widgets/notifications_tab_widgets/title_bar.dart';
 
 class NotificationsTab extends StatelessWidget {
 
@@ -10,7 +10,7 @@ class NotificationsTab extends StatelessWidget {
    return Scaffold(
       body: Column(
         children: <Widget>[
-          buildTitleBar("Notifications"),
+          buildTitleBar(),
           Expanded(
             flex:18,
             child: Container(

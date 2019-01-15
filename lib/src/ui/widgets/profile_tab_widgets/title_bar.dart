@@ -5,7 +5,7 @@ Expanded buildTitleBar() {
       flex: 2,
       child: Row(
         children: <Widget>[
-          Text("Battles",
+          Text("Profile",
               style: TextStyle(fontFamily: 'Amatic', fontSize: 32.0)),
         ],
       ),

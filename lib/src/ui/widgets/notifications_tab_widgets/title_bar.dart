@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-Expanded buildTitleBar(String tabTitle) {
+Expanded buildTitleBar() {
     return Expanded(
       flex: 2,
       child: Row(
         children: <Widget>[
-          Text(tabTitle,
+          Text("Notifications",
               style: TextStyle(fontFamily: 'Amatic', fontSize: 32.0)),
         ],
       ),
