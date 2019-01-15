@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outfit_battle/src/ui/widgets/title_bar.dart';
 
 class ProfileTab extends StatelessWidget {
 
@@ -6,32 +7,18 @@ class ProfileTab extends StatelessWidget {
 
  @override
  Widget build(BuildContext context) {
-   return Scaffold(
+     return Scaffold(
       body: Column(
         children: <Widget>[
+          buildTitleBar("Search"),
           Expanded(
-          flex: 1,
-            child: 
-                Row(
-                  children: <Widget>[
-                    Text(
-                     "Profile",
-                     style: TextStyle(
-                       fontFamily: 'Amatic',
-                       fontSize: 32.0
-                     )
-                    ),
-                  ],
-                ),
-          ),
-          Expanded(
-            flex: 9,
+            flex:18,
             child: Container(
-              color: Colors.blue,
+              color: Colors.black38,
             ),
-          ),
+         ),
         ],
       ),
     );
- }
+  }
 }

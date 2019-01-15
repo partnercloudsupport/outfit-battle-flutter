@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outfit_battle/src/ui/widgets/title_bar.dart';
 
 class ShopTab extends StatelessWidget {
 
@@ -9,29 +10,15 @@ class ShopTab extends StatelessWidget {
    return Scaffold(
       body: Column(
         children: <Widget>[
+          buildTitleBar("Shop"),
           Expanded(
-          flex: 1,
-            child: 
-                Row(
-                  children: <Widget>[
-                    Text(
-                     "Shop",
-                     style: TextStyle(
-                       fontFamily: 'Amatic',
-                       fontSize: 32.0
-                     )
-                    ),
-                  ],
-                ),
-          ),
-          Expanded(
-            flex: 9,
+            flex:18,
             child: Container(
-              color: Colors.blue,
+              color: Colors.black38,
             ),
-          ),
+         ),
         ],
       ),
     );
- }
+  }
 }
