@@ -3,6 +3,7 @@ import 'src/app.dart';
 
 void main(){
   runApp(App());
+  // runApp(TestClip());
 }
 
 
