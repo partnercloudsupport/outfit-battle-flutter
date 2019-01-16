@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart';
 import 'package:flutter_advanced_networkimage/transition_to_image.dart';
 
 Container buildPopularHashtagsListLayout() {
+
+  var hashtagTextList = ["nature", "life", "mondayMotivation", "newYear", "2019"];
+
   return Container(
     constraints: BoxConstraints(
         maxHeight: double.infinity,
@@ -12,14 +16,14 @@ Container buildPopularHashtagsListLayout() {
     child: ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      itemCount: 5,
+      itemCount: hashtagTextList.length,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
           child: Column(
             children: <Widget>[
               Text(
-                "#sundayChilling",
+               "#${hashtagTextList[index]}"
                 // style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Container(
@@ -28,10 +32,10 @@ Container buildPopularHashtagsListLayout() {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: 10,
+                  itemCount: hashtagTextList.length,
                   itemBuilder: (BuildContext context, int index) {
                     return AspectRatio(
-                      aspectRatio: 3 / 2,
+                      aspectRatio: 7 / 4,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
@@ -43,7 +47,7 @@ Container buildPopularHashtagsListLayout() {
                                   child: Container(
                                     child: TransitionToImage(
                                       AdvancedNetworkImage(
-                                        "https://loremflickr.com/300/400/beautiful girl?lock=3",
+                            "https://loremflickr.com/300/400/model?model,${hashtagTextList[index]}?lock=${index+Random().nextInt(60)}",
                                         loadedCallback: () {
                                           // showVoteButton();
                                           print('Image loaded!');
@@ -73,7 +77,7 @@ Container buildPopularHashtagsListLayout() {
                                   child: Container(
                                     child: TransitionToImage(
                                       AdvancedNetworkImage(
-                                        "https://loremflickr.com/300/400/model?beautiful ladys=54",
+                                        "https://loremflickr.com/300/400/model?model,${hashtagTextList[index]}=${index+Random().nextInt(60)}",
                                         loadedCallback: () {
                                           // showVoteButton();
                                           print('Image loaded!');
