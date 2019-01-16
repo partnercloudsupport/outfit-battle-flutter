@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart';
 import 'package:flutter_advanced_networkimage/transition_to_image.dart';
 
-Widget buildBattlerAvatar(String battlerProfilePictureUrl, {String battlerNumber, radius,
+Widget buildBattlerAvatar(String battlerProfilePictureUrl, {String battlerInitial, radius,
     minRadius,
     maxRadius,})
 {
@@ -57,7 +57,7 @@ double getMinDiameter() {
          fit: BoxFit.cover,
          placeholder:  CircleAvatar(
            backgroundColor: Colors.black54,
-           child: Text(battlerNumber,
+           child: Text(battlerInitial,
            style: TextStyle(color: Colors.white,),
          ),
          ),

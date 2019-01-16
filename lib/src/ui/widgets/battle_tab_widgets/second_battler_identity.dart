@@ -10,7 +10,7 @@ Expanded buildSecondBattlerIdentity(String secondBattlerProfilePictureUrl){
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
          children: <Widget>[
-            buildBattlerAvatar( "https://loremflickr.com/300/400/model,girl?lock=5", battlerNumber: "2",),
+            buildBattlerAvatar( "https://loremflickr.com/300/400/model,girl?lock=5", battlerInitial: "S",),
             buildBattlerUsername("swoosh_suzzy"),
          
         ], 
