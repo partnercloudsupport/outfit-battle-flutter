@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:flutter_advanced_networkimage/flutter_advanced_networkimage.dart';
-import 'package:flutter_advanced_networkimage/transition_to_image.dart';
+import 'package:outfit_battle/src/ui/widgets/search_tab_widgets/battle_image.dart';
 
 Container buildPopularHashtagsListLayout() {
 
   var hashtagTextList = ["nature", "life", "mondayMotivation", "newYear", "2019"];
+  var battleImageUrl = "https://loremflickr.com/300/400/model?model,${Random().nextInt(60)}";
 
   return Container(
     constraints: BoxConstraints(
@@ -41,74 +41,14 @@ Container buildPopularHashtagsListLayout() {
                         child: Card(
                           child: Row(
                             children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: Card(
-                                  child: Container(
-                                    child: TransitionToImage(
-                                      AdvancedNetworkImage(
-                            "https://loremflickr.com/300/400/model?model,${hashtagTextList[index]}?lock=${index+Random().nextInt(60)}",
-                                        loadedCallback: () {
-                                          // showVoteButton();
-                                          print('Image loaded!');
-                                        },
-                                        loadFailedCallback: () {
-                                          // hideVoteButton();
-                                          print('Image load failed!');
-                                        },
-                                        useDiskCache: true,
-                                      ),
-                                      loadingWidget:
-                                          const CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.black45),
-                                      ),
-                                      fit: BoxFit.cover,
-                                      placeholder: const Icon(Icons.refresh),
-                                      enableRefresh: true,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Card(
-                                  child: Container(
-                                    child: TransitionToImage(
-                                      AdvancedNetworkImage(
-                                        "https://loremflickr.com/300/400/model?model,${hashtagTextList[index]}=${index+Random().nextInt(60)}",
-                                        loadedCallback: () {
-                                          // showVoteButton();
-                                          print('Image loaded!');
-                                        },
-                                        loadFailedCallback: () {
-                                          // hideVoteButton();
-                                          print('Image load failed!');
-                                        },
-                                        useDiskCache: true,
-                                      ),
-                                      loadingWidget:
-                                          const CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.black45),
-                                      ),
-                                      fit: BoxFit.cover,
-                                      placeholder: const Icon(Icons.refresh),
-                                      enableRefresh: true,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              battleImage(hashtagTextList, index, battleImageUrl),
+                              battleImage(hashtagTextList, index, battleImageUrl),
                             ],
                           ),
                         ),
                       ),
                     );
                   },
-
-                  // child: Center(child: Text(index.toString())),
                 ),
               ),
             ],
@@ -118,3 +58,5 @@ Container buildPopularHashtagsListLayout() {
     ),
   );
 }
+
+
