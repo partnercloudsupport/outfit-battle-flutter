@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:outfit_battle/src/ui/widgets/search_tab_widgets/popular_hashtag_list_layout.dart';
+import 'package:outfit_battle/src/ui/widgets/search_tab_widgets/popular_hashtags_title.dart';
 
 Expanded buildPopularHashtagsLayout() {
   return Expanded(
@@ -6,19 +8,13 @@ Expanded buildPopularHashtagsLayout() {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Expanded(
-          flex: 1,
-          child: Align(
-            alignment: Alignment(-1.0, 0.0),
-            child: Text("Popular Hashtags", style: TextStyle(fontSize: 16.0))),
-        ),
+        buildPopularHashtagsTitle(),
         Expanded(
           flex: 9,
-          child: Container(
-            color: Colors.blueAccent,
-          ),
-        )
+          child:buildPopularHashtagsListLayout(),
+        ),
       ],
     ),
   );
 }
+
