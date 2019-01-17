@@ -5,7 +5,6 @@ import 'package:outfit_battle/src/ui/widgets/search_tab_widgets/battle_image.dar
 Container buildPopularHashtagsListLayout() {
 
   var hashtagTextList = ["nature", "life", "mondayMotivation", "newYear", "2019"];
-  var battleImageUrl = "https://loremflickr.com/300/400/model?model,${Random().nextInt(60)}";
 
   return Container(
     constraints: BoxConstraints(
@@ -41,8 +40,8 @@ Container buildPopularHashtagsListLayout() {
                         child: Card(
                           child: Row(
                             children: <Widget>[
-                              battleImage(hashtagTextList, index, battleImageUrl),
-                              battleImage(hashtagTextList, index, battleImageUrl),
+                              battleImage(hashtagTextList, index, "https://loremflickr.com/300/400/model?model,${hashtagTextList[index]}=${index+Random().nextInt(60)}"),
+                              battleImage(hashtagTextList, index, "https://loremflickr.com/300/400/model?model,${hashtagTextList[index]}=${index+Random().nextInt(60)}"),
                             ],
                           ),
                         ),
