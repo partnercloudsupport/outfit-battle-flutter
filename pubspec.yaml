@@ -17,6 +17,7 @@ dependencies:
   flutter_advanced_networkimage: any
   flutter:
     sdk: flutter
+  flutter_svg: ^0.10.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -51,10 +52,15 @@ flutter:
         - asset: fonts/JosefinSansRegular.ttf
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
-
+  assets:
+   - assets/svgs/x-button.svg
+   - assets/svgs/slingshot.svg
+   - assets/svgs/rings.svg
+   - assets/svgs/balloons.svg
+   - assets/svgs/scooter.svg
+   - assets/svgs/spinner.svg
+   - assets/svgs/rocket.svg
+  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
