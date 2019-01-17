@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:outfit_battle/src/models/shop_item_model.dart';
+import 'package:outfit_battle/src/ui/widgets/shop_tab_widgets/panel_list.dart';
 
 class PanelList extends StatefulWidget {
   final List<ShopItem> shopItems;
@@ -19,41 +20,16 @@ class _PanelListState extends State<PanelList> {
                 child: Container(
                   child: ExpansionPanelList(
                     expansionCallback: (int index, bool isExpanded) {
-                      print(index.toString() + " is index");
                       setState(() {
-                        print(widget.shopItems[index].isExpanded);
                         widget.shopItems[index].isExpanded = !(widget.shopItems[index].isExpanded);
-                        print(widget.shopItems[index].isExpanded.toString() + " after");
                       });
                     },
-                    children: buildPanelList(),
+                    children: buildPanelList(widget.shopItems),
                   ),
                 ),
               ),
             ),
           );
-  }
-
-  List<ExpansionPanel> buildPanelList() {
-    var panelList = <ExpansionPanel>[];
-
-    for (var i = 0; i < widget.shopItems.length; i++) {
-      panelList.add(ExpansionPanel(
-        // body: shopItems[i].body,
-        body: Text("data"),
-        headerBuilder: (BuildContext context, bool isExpanded) {
-          return ListTile(
-            trailing: Icon(Icons.gamepad),
-            leading: Icon(Icons.gamepad),
-            title: Text(widget.shopItems[i].header),
-          );
-        },
-        isExpanded: widget.shopItems[i].isExpanded,
-        // isExpanded: true,
-      ));
-    }
-
-    return panelList;
   }
 }
 
