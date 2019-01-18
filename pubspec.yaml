@@ -61,6 +61,10 @@ flutter:
    - assets/svgs/spinner.svg
    - assets/svgs/rocket.svg
    - assets/svgs/coin.svg
+   - assets/svgs/podium.svg
+   - assets/svgs/train.svg
+   - assets/svgs/gamepad.svg
+   - assets/svgs/sword.svg
   
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
