@@ -5,11 +5,11 @@ Align buildNextBattleButton() {
       alignment: Alignment(1.1, 0.0),
       child: Container(
         decoration: new BoxDecoration(
-          color: Colors.black45,
+          color: Colors.black12,
           shape: BoxShape.circle,
         ),
         child: IconButton(
-          color: Colors.white70,
+          color: Colors.white,
           icon: Icon(Icons.navigate_next),
           onPressed: () {},
         ),
