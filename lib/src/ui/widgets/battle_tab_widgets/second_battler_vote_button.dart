@@ -3,12 +3,15 @@
 Container buildSecondBattlerVoteButton() {
     return Container(
       decoration: new BoxDecoration(
-        color: Colors.white,
+        border: Border.all(
+          color: Colors.white
+        ),
+        color: Colors.transparent,
         shape: BoxShape.circle,
       ),
       child: IconButton(
         splashColor: Colors.white,
-        color: Colors.black,
+        color: Colors.white,
         icon: Icon(Icons.check),
         onPressed: () {},
       ),

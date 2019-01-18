@@ -4,6 +4,13 @@ import 'package:outfit_battle/src/ui/widgets/battle_tab_widgets/second_battler_v
 
 Container buildVotingLayout() {
     return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: <Color>[Colors.black26, Colors.transparent],
+        begin: Alignment(0.0, 1.0),
+        end: Alignment(0.0, 0.0),
+
+        )
+      ),
       constraints: BoxConstraints(
           maxHeight: double.infinity,
           maxWidth: double.infinity,
@@ -14,10 +21,6 @@ Container buildVotingLayout() {
         widthFactor: 1.0,
         heightFactor: 0.2,
         child: Container(
-          decoration: new BoxDecoration(
-            color: Colors.black12,
-            shape: BoxShape.rectangle,
-          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
