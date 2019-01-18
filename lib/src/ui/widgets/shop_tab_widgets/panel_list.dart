@@ -15,7 +15,7 @@ List<ExpansionPanel> buildPanelList(List<ShopItem> shopItems) {
           alignment: Alignment(0.5, 0.5),
                   child: ListTile(
             title: Text(shopItems[i].body, 
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black54),
             ),
             trailing: RaisedButton.icon(
                 color: Colors.black87,
