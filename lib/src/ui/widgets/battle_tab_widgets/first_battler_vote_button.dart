@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Container buildFirstBattlerVoteButton() {
     return Container(
       decoration: new BoxDecoration(
-        color: Colors.grey,
+        color: Colors.white,
         shape: BoxShape.circle,
       ),
       child: IconButton(

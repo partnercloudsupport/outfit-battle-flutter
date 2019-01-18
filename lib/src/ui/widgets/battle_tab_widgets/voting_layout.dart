@@ -11,7 +11,7 @@ Container buildVotingLayout() {
           minHeight: double.infinity),
       child: FractionallySizedBox(
         alignment: Alignment(0.0, 0.9),
-        widthFactor: 0.4,
+        widthFactor: 1.0,
         heightFactor: 0.2,
         child: Container(
           decoration: new BoxDecoration(
@@ -19,7 +19,7 @@ Container buildVotingLayout() {
             shape: BoxShape.rectangle,
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               buildFirstBattlerVoteButton(),
               buildSecondBattlerVoteButton(),

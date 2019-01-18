@@ -3,7 +3,7 @@
 Container buildSecondBattlerVoteButton() {
     return Container(
       decoration: new BoxDecoration(
-        color: Colors.grey,
+        color: Colors.white,
         shape: BoxShape.circle,
       ),
       child: IconButton(
