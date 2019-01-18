@@ -7,7 +7,7 @@ class NotificationsTab extends StatelessWidget {
   NotificationsTab();
 
 static final newFollowerIconAsset  = "assets/svgs/train.svg";
-static final battleWonIconAsset = "assets/svgs/podium.svg";
+static final battleWonIconAsset = "assets/svgs/confetti.svg";
 static final newChallengeIconAsset = "assets/svgs/gamepad.svg";
 static final newFollowerBattleIconAsset  = "assets/svgs/sword.svg";
 
