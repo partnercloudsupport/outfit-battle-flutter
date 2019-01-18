@@ -24,15 +24,23 @@ class _ShopTabState extends State<ShopTab> {
   static String removeAdsPrice = "3000";
   static String premiumBattlePackPrice = "1000";
 
+  static String moreBattlesDescription = "Increases the maximum amount of active battles you can have by one.\n\nCan be bought up to 17 times.";
+  static String noDailyCoinLimitDescription = "Removes the daily 100 coin limit that you can earn by voting battles.\n\nLasts 48 hours.";
+  static String cancelSoloBattleDescription = "Allows you cancel your own solo battles before they expire to free up slots\n\nLasts 48 hours.";
+  static String doubleCoinsDescription = "Doubles the amount of coins you can get from voting and winning battles.\n\nLasts 48 hours.";
+  static String boostBattlesDescription = "Adds your battles to a privileged queue.\n\nBattles from the privileged queue are shown before other battles not in the queue.";
+  static String removeAdsDescription = "Removes ads from the app.\n\nLasts one month.";
+  static String premiumBattlePackDescription = "Removes ads, boosts your battles, gives 7 active battle slots and doubles coins on wins.\n\nLasts one week.";
+
 
   var shopItems = <ShopItem>[
-    ShopItem(false, "Double coins", "Body4", doubleCoinsAsset, doubleCoinsPrice),
-    ShopItem(false, "No daily coin limit", "Body2", noDailyCoinLimitAsset, noDailyCoinLimitPrice),
-    ShopItem(false, "Can cancel solo battles", "Body3", cancelSoloBattleAsset, cancelSoloBattlePrice),
-    ShopItem(false, "Boost battles", "Body5", boostBattlesAsset, boostBattlesPrice),
-    ShopItem(false, "More battles", "Body", moreBattlesAsset, moreBattlesPrice,),
-    ShopItem(false, "Remove ads", "Body6", removeAdsAsset, removeAdsPrice),
-    ShopItem(false, "Premium battle pack", "Body7", premiumBattlePackAsset, premiumBattlePackPrice),
+    ShopItem(false, "Double coins", doubleCoinsDescription, doubleCoinsAsset, doubleCoinsPrice),
+    ShopItem(false, "No daily coin limit", noDailyCoinLimitDescription, noDailyCoinLimitAsset, noDailyCoinLimitPrice),
+    ShopItem(false, "Can cancel solo battles", cancelSoloBattleDescription, cancelSoloBattleAsset, cancelSoloBattlePrice),
+    ShopItem(false, "Boost battles", boostBattlesDescription, boostBattlesAsset, boostBattlesPrice),
+    ShopItem(false, "More battles", moreBattlesDescription, moreBattlesAsset, moreBattlesPrice,),
+    ShopItem(false, "Remove ads", removeAdsDescription, removeAdsAsset, removeAdsPrice),
+    ShopItem(false, "Premium battle pack", premiumBattlePackDescription, premiumBattlePackAsset, premiumBattlePackPrice),
   ];
 
 

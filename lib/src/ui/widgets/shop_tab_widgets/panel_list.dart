@@ -10,14 +10,15 @@ List<ExpansionPanel> buildPanelList(List<ShopItem> shopItems) {
   for (var i = 0; i < shopItems.length; i++) {
     panelList.add(ExpansionPanel(
       body: Container(
-        color: Colors.black87,
-        child: Center(
-          child: ListTile(
+        color: Colors.white,
+        child: Align(
+          alignment: Alignment(0.5, 0.5),
+                  child: ListTile(
             title: Text(shopItems[i].body, 
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
             ),
             trailing: RaisedButton.icon(
-                color: Colors.white,
+                color: Colors.black87,
                 onPressed: () {},
                 icon: IconButton(
                   color: Colors.white10,
@@ -27,7 +28,7 @@ List<ExpansionPanel> buildPanelList(List<ShopItem> shopItems) {
                 ),
                 label: Text(
                   shopItems[i].itemPrice,
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
           ),
