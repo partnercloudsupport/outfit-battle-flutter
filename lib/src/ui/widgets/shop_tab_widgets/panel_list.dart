@@ -3,25 +3,56 @@ import 'package:outfit_battle/src/models/shop_item_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 List<ExpansionPanel> buildPanelList(List<ShopItem> shopItems) {
-    var panelList = <ExpansionPanel>[];
+  var coinAsset = "assets/svgs/coin.svg";
 
-    for (var i = 0; i < shopItems.length; i++) {
-      panelList.add(ExpansionPanel(
-        body: Text(shopItems[i].body),
-        headerBuilder: (BuildContext context, bool isExpanded) {
-          return ListTile(
-            leading: IconButton(
-                  onPressed: (){},
-                          icon: SvgPicture.asset(
-              shopItems[i].iconAsset,),
+  var panelList = <ExpansionPanel>[];
+
+  for (var i = 0; i < shopItems.length; i++) {
+    panelList.add(ExpansionPanel(
+      body: Container(
+        color: Colors.black87,
+        child: Center(
+          child: ListTile(
+            title: Text(shopItems[i].body, 
+            style: TextStyle(color: Colors.white),
             ),
-            title: Text(shopItems[i].header),
-          );
-        },
-        isExpanded: shopItems[i].isExpanded,
-        // isExpanded: true,
-      ));
-    }
-
-    return panelList;
+            trailing: RaisedButton.icon(
+                color: Colors.white,
+                onPressed: () {},
+                icon: IconButton(
+                  color: Colors.white10,
+                  iconSize: 12.0,
+                  icon: SvgPicture.asset(coinAsset),
+                  onPressed: () {},
+                ),
+                label: Text(
+                  shopItems[i].itemPrice,
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+          ),
+        ),
+      ),
+      headerBuilder: (BuildContext context, bool isExpanded) {
+        return buildShopItemHeader(coinAsset, shopItems, i);
+      },
+      isExpanded: shopItems[i].isExpanded,
+      // isExpanded: true,
+    ));
   }
+
+  return panelList;
+}
+
+ListTile buildShopItemHeader(
+    String coinAsset, List<ShopItem> shopItems, int i) {
+  return ListTile(
+    leading: IconButton(
+      onPressed: () {},
+      icon: SvgPicture.asset(
+        shopItems[i].iconAsset,
+      ),
+    ),
+    title: Text(shopItems[i].header),
+  );
+}

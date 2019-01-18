@@ -3,8 +3,9 @@ class ShopItem {
   final String header;
   final String body;
   final String iconAsset;
+  final String itemPrice;
 
-  ShopItem(this._isExpanded, this.header, this.body, this.iconAsset);
+  ShopItem(this._isExpanded, this.header, this.body, this.iconAsset, this.itemPrice);
 
   bool get isExpanded => _isExpanded;
 
