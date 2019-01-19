@@ -5,19 +5,25 @@ import 'package:outfit_battle/src/ui/widgets/profile_tab_widgets/profile_details
 Expanded buildProfileLayoutTop() {
   return Expanded(
       flex: 2,
-      child: Row(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Expanded(
-            flex: 4,
-            child: Container(
-              child: buildProfileAvatar( "https://loremflickr.com/300/400/babe,smile?lock=02", battlerInitial: "J",)),
-          ),
-          Expanded(
-            flex: 6,
-            child: buildProfileDetails(),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 4,
+                child: Container(
+                    child: buildProfileAvatar(
+                  "https://loremflickr.com/300/400/babe,smile?lock=02",
+                  battlerInitial: "J",
+                )),
+              ),
+              Expanded(
+                flex: 6,
+                child: buildProfileDetails(),
+              ),
+            ],
           ),
         ],
       ));
 }
-
-
