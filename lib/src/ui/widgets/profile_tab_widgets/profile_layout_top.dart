@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:outfit_battle/src/ui/widgets/profile_tab_widgets/profile_avatar.dart';
+import 'package:outfit_battle/src/ui/widgets/profile_tab_widgets/profile_details.dart';
 
 Expanded buildProfileLayoutTop() {
   return Expanded(
@@ -13,8 +14,10 @@ Expanded buildProfileLayoutTop() {
           ),
           Expanded(
             flex: 6,
-            child: Container(color: Colors.red,),
+            child: buildProfileDetails(),
           ),
         ],
       ));
 }
+
+
