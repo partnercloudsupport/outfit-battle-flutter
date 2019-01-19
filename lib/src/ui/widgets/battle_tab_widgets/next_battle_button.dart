@@ -6,6 +6,11 @@ Align buildNextBattleButton() {
       child: Container(
         decoration: new BoxDecoration(
           color: Colors.black12,
+          boxShadow: [BoxShadow(
+              color: Colors.black12,
+              blurRadius: 2.0,
+              spreadRadius: 2.0
+            )],
           shape: BoxShape.circle,
         ),
         child: IconButton(

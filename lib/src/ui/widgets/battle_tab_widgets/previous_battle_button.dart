@@ -5,6 +5,11 @@ Align buildPreviousBattleButton() {
       alignment: Alignment(-1.1, 0.0),
       child: Container(
         decoration: new BoxDecoration(
+          boxShadow: [BoxShadow(
+              color: Colors.black12,
+              blurRadius: 2.0,
+              spreadRadius: 2.0
+            )],
           color: Colors.black12,
           shape: BoxShape.circle,
         ),

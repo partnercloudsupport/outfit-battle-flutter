@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 Container buildSecondBattlerVoteButton() {
   return Container(
     decoration: new BoxDecoration(
-      border: Border.all(color: Colors.white),
+      border: Border.all(
+        color: Colors.white,
+        width: 0.5,
+      ),
       color: Colors.transparent,
       shape: BoxShape.circle,
     ),

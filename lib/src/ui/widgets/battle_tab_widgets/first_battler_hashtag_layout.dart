@@ -6,7 +6,7 @@ Expanded buildSecondBattlerHashtagLayout(List<String> secondBattlerHashtagList) 
           child: Container(
             margin: EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 4.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: 
                 buildHashtagTextWidgetList(secondBattlerHashtagList),
                 ),
