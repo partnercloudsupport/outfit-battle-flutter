@@ -9,12 +9,7 @@ Expanded buildProfileLayoutTop() {
           Expanded(
             flex: 4,
             child: Container(
-              constraints: BoxConstraints(
-              maxHeight: double.infinity,
-              maxWidth: double.infinity,
-              minWidth: double.infinity,
-              minHeight: double.infinity),
-              child: buildProfileAvatar( "https://loremflickr.com/300/400/babe,girl?lock=097", battlerInitial: "J",)),
+              child: buildProfileAvatar( "https://loremflickr.com/300/400/babe,smile?lock=02", battlerInitial: "J",)),
           ),
           Expanded(
             flex: 6,

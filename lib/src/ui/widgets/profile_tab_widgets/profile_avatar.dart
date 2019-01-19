@@ -30,50 +30,41 @@ Widget buildProfileAvatar(
     return 2.0 * (radius ?? maxRadius ?? _defaultMaxRadius);
   }
 
-  return Container(
-    constraints: BoxConstraints(
-      minHeight: getMinDiameter(),
-      minWidth: getMinDiameter(),
-      maxWidth: getMaxDiameter(),
-      maxHeight: getMaxDiameter(),
-    ),
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-    ),
-    child: FractionallySizedBox(
-      heightFactor: 0.7,
-      widthFactor: 0.7,
-      child: ClipOval(
+  return FractionallySizedBox(
+  widthFactor: 0.7,
+    child: AspectRatio(
+      aspectRatio: 1.0/1.0,
+          child: ClipOval(
         child: TransitionToImage(
           AdvancedNetworkImage(
-            battlerProfilePictureUrl,
-            loadedCallback: () {
-              // showVoteButton();
-              print('Image loaded!');
-            },
-            loadFailedCallback: () {
-              // hideVoteButton();
-              print('Image load failed!');
-            },
-            useDiskCache: true,
+        battlerProfilePictureUrl,
+        loadedCallback: () {
+          // showVoteButton();
+          print('Image loaded!');
+        },
+        loadFailedCallback: () {
+          // hideVoteButton();
+          print('Image load failed!');
+        },
+        useDiskCache: true,
           ),
           loadingWidget: const CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.black45),
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.black45),
           ),
           fit: BoxFit.cover,
           placeholder: CircleAvatar(
-            radius: 50,
-            backgroundColor: Colors.black54,
-            child: Text(
-              battlerInitial,
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
+        radius: 100,
+        backgroundColor: Colors.black54,
+        child: Text(
+          battlerInitial,
+          style: TextStyle(
+      color: Colors.white,
+          ),
+        ),
           ),
           enableRefresh: true,
         ),
-      ),
+  ),
     ),
-  );
+    );
 }
