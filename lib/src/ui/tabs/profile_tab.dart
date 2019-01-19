@@ -8,23 +8,27 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {    
-    return Scaffold(
-      body: CustomScrollView(
-        shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
-        slivers: <Widget>[
-          SliverList(
-            delegate: SliverChildListDelegate([
-              Column(
-                children: <Widget>[
-                  buildTitleBar(context),
-                  buildProfileLayout(context),
-                  buildProfileBattlesLayout(),
-                ],
-              )
-            ]),
-          )
-        ],
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+          child: Scaffold(
+        body: CustomScrollView(
+          shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
+          slivers: <Widget>[
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Column(
+                  children: <Widget>[
+                    buildTitleBar(context),
+                    buildProfileLayout(context),
+                    buildProfileBattlesLayout(),
+                  ],
+                )
+              ]),
+            )
+          ],
+        ),
       ),
     );
   }
