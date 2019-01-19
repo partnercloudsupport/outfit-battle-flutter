@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
-Column buildProfileBattlesLayout() {
+Padding buildProfileBattlesLayout() {
   
-
-
-  return Column(
-    children: <Widget>[
-      TabBar(
-        indicatorColor: Colors.black87,
-        labelColor: Colors.black,
-        unselectedLabelColor: Colors.black38,
-          tabs: [
-             Tab(text: "Past battles",),
-             Tab(text: "Present battles"),
-          ],
-        ),
-    ],
+  return Padding(
+    padding: const EdgeInsets.only(top:8.0),
+    child: Column(
+      children: <Widget>[
+        TabBar(
+          indicatorColor: Colors.black87,
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.black38,
+            tabs: [
+               Tab(text: "Past battles",),
+               Tab(text: "Present battles"),
+            ],
+          ),
+      ],
+    ),
   );
 }
 
