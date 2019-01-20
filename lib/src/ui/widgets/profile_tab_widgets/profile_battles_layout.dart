@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Container buildProfileBattlesLayout(context) {
   return Container(
-    height: MediaQuery.of(context).size.height * 0.6 - 24,
+    height: MediaQuery.of(context).size.height * 0.5,
     child: Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(
@@ -14,9 +14,11 @@ Container buildProfileBattlesLayout(context) {
             unselectedLabelColor: Colors.black38,
             tabs: [
               Tab(
+                text: "Present battles",
+              ),
+              Tab(
                 text: "Past battles",
               ),
-              Tab(text: "Present battles"),
             ],
           ),
           Expanded(
@@ -47,5 +49,22 @@ Widget buildPastBattlesLayout() {
 }
 
 Widget buildBattlesLayout() {
-  return Text("Present battles");
+  return GridView.count(
+    scrollDirection: Axis.horizontal,
+    crossAxisCount: 1,
+    children: List.generate(100, (index) {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          color: Colors.teal,
+          child: Center(
+            child: Text(
+              "Item $index",
+              style: TextStyle(fontSize: 24, fontFamily: 'Amatic'),
+            ),
+          ),
+        ),
+      );
+    }),
+  );
 }
