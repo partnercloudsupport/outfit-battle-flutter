@@ -9,6 +9,7 @@ Container buildProfileLayout(context) {
       children: <Widget>[
         buildProfileLayoutTop(),
         buildProfileLayoutBottom()
+        
       ],
     ),
   );
