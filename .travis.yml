@@ -1,24 +1,31 @@
-os: osx 
-language: generic 
-before_script: 
- - brew update 
- - brew install --HEAD usbmuxd 
- - brew unlink usbmuxd 
- - brew link usbmuxd 
- - brew install --HEAD libimobiledevice 
- - brew install ideviceinstaller 
- - brew install ios-deploy 
- - git clone https://github.com/flutter/flutter.git -b beta --depth 1 
-script: 
- - flutter/bin/flutter build ios --debug --no-codesign
-cache: 
-  directories: 
-  - $HOME/.pub-cache
-before_deploy: 
-  - pushd build/ios/iphoneos 
-  - mkdir Payload 
-  - cd Payload 
-  - ln -s ../Runner.app 
-  - cd .. 
-  - zip -r app.ipa Payload 
-  - popd
+os: osx
+language: generic
+before_script:
+- brew update
+- brew install --HEAD usbmuxd
+- brew unlink usbmuxd
+- brew link usbmuxd
+- brew install --HEAD libimobiledevice
+- brew install ideviceinstaller
+- brew install ios-deploy
+- git clone https://github.com/flutter/flutter.git -b beta --depth 1
+script:
+- flutter/bin/flutter build ios --debug --no-codesign
+cache:
+  directories:
+  - "$HOME/.pub-cache"
+before_deploy:
+- pushd build/ios/iphoneos
+- mkdir Payload
+- cd Payload
+- ln -s ../Runner.app
+- cd ..
+- zip -r app.ipa Payload
+- popd
+deploy:
+  provider: releases
+  api_key:
+    secure: dusMdljBDbOIqEhrjrjJSZkQHoLX4UiSQ6UF5cCmfa2SSDyPJur1ghAn0CQ+37F4leaU69IB6y8Oke7TIn6Fz/6QPJuzEfOZ3FTAi+6p5DkXOupacmUTTTWQFs8MtcRnDT8SD7t4kSojz2PGIS+H9wq8v8kYxKLhLC9F02p/6ClCTU/wmZpo60F4upvu5CPt/K3xY5VemH3MqzplAylTCZ4DIW6s4hZyhXNW6OCy2Sb4nc9YxhFyC77rZw1JFQb79jRcwrvh7GN51hP1wSfSdBcXHG0Q6Mi+Okg55A8VCzIVV3Y7sK44qco19dGhsERCJZeue0vDvCn9e+JnM5/TEVUDrxsOTkTdadLXSuD89NLtqo6M6c5feM0ZZ0vqkz43Tr3Hw9AoWLaHY4nWoewnt4OKci11cfFzrFVAxi1AzHhPl5sH/IaQTrEOuqIJT+cZ3BIMbNi/i4xeyS7ACzMNklP3YI+rQakj7D4NE0oOgHtdrwZXvvdNysUofuX9t3/BXZ+hQZMF/Jbcz00P3OWhGcabPX5AuBdlZwqEPRoscBQoLo+47Uns9Qf8Yqs8GweCKfrfwhO39RXSQXD7BicaykfiSD7Buf7yxKrAZjqNOhUkit2ngWmQBoyh2393Ji8sbqN+vYIoTvUxRivw/fR1qmuI4WgfybKCY6uSrGSOPBA=
+  file: build/ios/iphoneos/app.ipa
+  on:
+    repo: herovickers/outfit-battle-flutter
