@@ -29,3 +29,5 @@ deploy:
   file: build/ios/iphoneos/app.ipa
   on:
     repo: herovickers/outfit-battle-flutter
+
+    
