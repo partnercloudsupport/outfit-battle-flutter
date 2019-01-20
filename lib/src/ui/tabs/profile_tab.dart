@@ -22,7 +22,7 @@ class ProfileTab extends StatelessWidget {
                   children: <Widget>[
                     buildTitleBar(context),
                     buildProfileLayout(context),
-                    buildProfileBattlesLayout(),
+                    buildProfileBattlesLayout(context),
                   ],
                 )
               ]),
