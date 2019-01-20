@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:outfit_battle/src/ui/widgets/profile_tab_widgets/profile_battle_box.dart';
 
 Container buildProfileBattlesLayout(context) {
   return Container(
-    height: MediaQuery.of(context).size.height * 0.5,
+    height: MediaQuery.of(context).size.height * 0.48,
     child: Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(
@@ -37,16 +38,26 @@ Container buildProfileBattlesLayout(context) {
 }
 
 Widget buildPresentBattlesLayout() {
-  return Center(
-    child: buildBattlesLayout(),
-  );
+     return GridView.count(
+    scrollDirection: Axis.horizontal,
+    crossAxisCount: 1,
+    children: List.generate(100, (index) {
+      return buildBattleBox();
+    }),
+  );    
 }
 
 Widget buildPastBattlesLayout() {
-  return Center(
-    child: buildBattlesLayout(),
-  );
+     return GridView.count(
+    scrollDirection: Axis.horizontal,
+    crossAxisCount: 1,
+    children: List.generate(100, (index) {
+      return buildBattleBox();
+    }),
+  );    
 }
+
+
 
 Widget buildBattlesLayout() {
   return GridView.count(
@@ -54,7 +65,7 @@ Widget buildBattlesLayout() {
     crossAxisCount: 1,
     children: List.generate(100, (index) {
       return Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(4.0),
         child: Container(
           color: Colors.teal,
           child: Center(
