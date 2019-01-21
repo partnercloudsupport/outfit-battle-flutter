@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'src/app.dart';
+// import 'src/app.dart';
+import 'src/test.dart';
 
 void main(){
-  runApp(App());
-  // runApp(TestClip());
+  // runApp(App());
+  runApp(TestClip());
 }
 
 

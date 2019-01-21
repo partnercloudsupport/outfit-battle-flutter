@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class TestClip extends StatelessWidget {
   TestClip();
 
+
   final List cards = new List.generate(20, (i) => Text("List number $i"));
+  var _cpolor
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,43 @@ class TestClip extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: Text("data"),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                            
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.location_on, color: Colors.white,),
+                                DropdownButton<String>(
+                              value: _color,
+                                items: <String>["New York", 'Boston'].map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }
+                                  
+                                ).toList(),
+                                onChanged: (_) {},
+                            ) ,
+                              ],
+                            ),
+                            
+
+                            Icon(Icons.settings, color: Colors.white),
+                          ],
+                          ),
+                        ),
+                        Text("Where would you want to be?"),
+                        
+                      ],
+                    ),
                   ),
                   Expanded(
                     flex: 1,
@@ -44,40 +82,33 @@ class TestClip extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          child: Column(
                             children: <Widget>[
-                              Text(
-                                "Currently Watched Items",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  Text(
+                                    "Currently Watched Items",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.0),
+                                  ),
+                                  Text(
+                                    "VIEW ALL(12)",
+                                    style: TextStyle(
+                                        color: Colors.orange,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.0),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "VIEW ALL(12)",
-                                style: TextStyle(
-                                    color: Colors.orange,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16.0),
+                              Padding(
+                                padding: const EdgeInsets.only(top:8.0),
+                                child:  Text("data"),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 8,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, position) {
-                            return ListTile(
-                              title: Text('Text'),
-                              // subtitle: Text('${items[position].body}'),
-                              // leading: ...
-                              onTap: () => null,
-                            );
-                          },
-                          itemCount: cards.length,
                         ),
                       ),
                     ]),
