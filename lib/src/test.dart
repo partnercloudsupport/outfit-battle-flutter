@@ -5,7 +5,7 @@ class TestClip extends StatelessWidget {
 
 
   final List cards = new List.generate(20, (i) => Text("List number $i"));
-  var _cpolor
+  var _color = "Fire";
 
   @override
   Widget build(BuildContext context) {
