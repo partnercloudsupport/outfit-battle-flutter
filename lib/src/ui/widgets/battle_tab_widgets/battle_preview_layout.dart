@@ -11,8 +11,8 @@ Expanded buildBattlePreviewLayout() {
         children: <Widget>[
           buildBattleImagesRow(),
           buildVotingLayout(),
-          buildPreviousBattleButton(),
-          buildNextBattleButton(),
+          // buildPreviousBattleButton(),
+          // buildNextBattleButton(),
         ],
       ),
     );
