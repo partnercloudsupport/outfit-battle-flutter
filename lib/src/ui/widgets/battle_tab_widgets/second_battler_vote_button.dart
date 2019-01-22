@@ -12,7 +12,7 @@ Container buildSecondBattlerVoteButton() {
     ),
     child: IconButton(
       splashColor: Colors.white,
-      color: Colors.white,
+      color: Colors.white, 
       icon: Icon(Icons.favorite_border),
       onPressed: () {},
     ),
