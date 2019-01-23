@@ -18,7 +18,7 @@ class BattlesTab extends StatelessWidget {
           buildBattleBox(),
           // buildAdBattleBox(),
           Spacer(),
-          buildBattleButton(),
+          buildBattleButton(context),
         ],
       ),
     );
