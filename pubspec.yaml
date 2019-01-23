@@ -44,6 +44,9 @@ flutter:
     - family: Swords
       fonts:
         - asset: fonts/Swords.ttf
+    - family: Coin
+      fonts:
+        - asset: fonts/Coin.ttf
     - family: Amatic
       fonts:
         - asset: fonts/AmaticSCBold.ttf

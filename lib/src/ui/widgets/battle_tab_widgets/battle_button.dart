@@ -7,6 +7,7 @@ Expanded buildBattleButton(context) {
     child: Hero(
       tag: 'test',
       child: FloatingActionButton(
+        // label: Text("Battle"),
         foregroundColor: Colors.white,
         backgroundColor: Colors.black,
         child: Padding(
@@ -24,22 +25,15 @@ Expanded buildBattleButton(context) {
                 child: AlertDialog(
                   content: Container(
                     height: MediaQuery.of(context).size.height * .7,
-                    width: MediaQuery.of(context).size.width * .9,
-                    child: Hero(
-                      tag: 'test',
-                      child: FloatingActionButton(
-                        onPressed: () {},
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.black,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
-                          child: Icon(
-                            CustomIcons.swords_crossed,
-                            color: Colors.white,
-                          ),
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: <Widget>[
+                        new BattleUploadLayout(),
+                        SizedBox(
+                          height: 10,
                         ),
-                      ),
+                        BattleUploadButton(),
+                      ],
                     ),
                   ),
                 ),
@@ -50,6 +44,59 @@ Expanded buildBattleButton(context) {
       ),
     ),
   );
+}
+
+class BattleUploadLayout extends StatelessWidget {
+  const BattleUploadLayout({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: Container(
+          color: Colors.black54,
+          child: Center(
+              child: Text(
+            "data",
+            style: TextStyle(color: Colors.white),
+          ))),
+    );
+  }
+}
+
+class BattleUploadButton extends StatelessWidget {
+  const BattleUploadButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+      tag: 'test',
+      child: FloatingActionButton.extended(
+        label: Text("Battle"), //
+        onPressed: () {},
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.black,
+        icon: Row(
+          children: <Widget>[
+            Text("30"),
+            SizedBox(width: 2),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 2.0),
+              child: Icon(
+                CustomIcons.coin,
+                color: Colors.white,
+                size: 14,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class CustomDialogRoute<T> extends PageRoute<T> {

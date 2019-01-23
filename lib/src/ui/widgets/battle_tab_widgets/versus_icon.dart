@@ -34,7 +34,7 @@ Expanded buildVersusIcon() {
           SizedBox(height: 2,),
           Expanded(
             flex: 1,
-            child: Text("1 hr ago", style: TextStyle(color: Colors.black54),),
+            child: Text("1 hr", style: TextStyle(color: Colors.black54, fontSize: 12),),
           ),
         ],
       ),

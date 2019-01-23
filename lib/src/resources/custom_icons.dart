@@ -18,7 +18,11 @@ import 'package:flutter/widgets.dart';
 class CustomIcons {
   CustomIcons._();
 
-  static const _kFontFam = 'Swords';
+  static const _kFontSwords = 'Swords';
+  
+  static const _kFontCoin = 'Coin';
 
-  static const IconData swords_crossed = const IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData swords_crossed = const IconData(0xe800, fontFamily: _kFontSwords);
+
+  static const IconData coin = const IconData(0xe803, fontFamily: _kFontCoin);
 }
