@@ -1,19 +1,36 @@
 import 'package:flutter/material.dart';
 
-List<Text> buildHashtagTextWidgetList(List<String> battlerHashtagList) {
-    List<Text> battlerHashtagTextWidgetList = List<Text>();
-    
-    for (String hashtag in battlerHashtagList) {
+List<Widget> buildHashtagTextWidgetList(List<String> battlerHashtagList) {
+  List<Widget> battlerHashtagTextWidgetList = List<Widget>();
 
-      
-       hashtag==battlerHashtagList.first
-       ?
-       battlerHashtagTextWidgetList.add(Text(hashtag, style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),),)
-       :
-       battlerHashtagTextWidgetList.add(Text(hashtag, style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black38),),);  
-      
-      print(hashtag);
-    }
-    return battlerHashtagTextWidgetList; 
+  for (String hashtag in battlerHashtagList) {
+    hashtag == battlerHashtagList.first
+        ? battlerHashtagTextWidgetList.add(
+            InkWell(
+              onTap: () {
+                print("tapped $hashtag");
+              },
+              child: Text(
+                hashtag,
+                style:
+                    TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+              ),
+            ),
+          )
+        : battlerHashtagTextWidgetList.add(
+            InkWell(
+              onTap: () {
+                print("tapped $hashtag");
+              },
+              child: Text(
+                hashtag,
+                style: TextStyle(
+                    fontStyle: FontStyle.italic, color: Colors.black38),
+              ),
+            ),
+          );
 
+    print(hashtag);
   }
+  return battlerHashtagTextWidgetList;
+}

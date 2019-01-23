@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:outfit_battle/src/anim_test.dart';
-// import 'src/app.dart';
+// import 'package:outfit_battle/src/anim_test.dart';
+import 'src/app.dart';
 // import 'src/test.dart';
 
 void main(){
-  // runApp(App());
+  runApp(App());
   // runApp(TestClip());
-  runApp(AnimTest());
+  // runApp(AnimTest());
 }
 
 
