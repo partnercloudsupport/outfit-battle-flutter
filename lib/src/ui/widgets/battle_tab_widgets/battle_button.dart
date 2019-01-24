@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:outfit_battle/src/resources/custom_icons.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:async';
+import 'dart:io';
 
 Expanded buildBattleButton(context) {
   return Expanded(
@@ -46,22 +49,98 @@ Expanded buildBattleButton(context) {
   );
 }
 
-class BattleUploadLayout extends StatelessWidget {
-  const BattleUploadLayout({
+class BattleUploadLayout extends StatefulWidget {
+  BattleUploadLayout({
     Key key,
   }) : super(key: key);
+
+  @override
+  BattleUploadLayoutState createState() {
+    return new BattleUploadLayoutState();
+  }
+}
+
+class BattleUploadLayoutState extends State<BattleUploadLayout> {
+  File _image;
+
+  Future getImageFromCamera(context) async {
+    print("tapped");
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = image;
+    });
+
+    Navigator.pop(context);
+  }
+
+  Future getImageFromGallery(context) async {
+    print("tapped");
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
+
+    Navigator.pop(context);
+  }
+
+  openImageOptions() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            children: <Widget>[
+              SimpleDialogOption(
+                child: new Text('Take photo'),
+                onPressed: () {
+                  getImageFromCamera(context);
+                },
+              ),
+              SimpleDialogOption(
+                child: new Text('Choose existing photo'),
+                onPressed: () {
+                  getImageFromGallery(context);
+                },
+              ),
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: Container(
-          color: Colors.black54,
-          child: Center(
-              child: Text(
-            "data",
-            style: TextStyle(color: Colors.white),
-          ))),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Material(
+              color: Colors.black87,
+              child: InkWell(
+                onTap: () {
+                  // getImage();
+                  openImageOptions();
+                },
+                child: Container(
+                  // color: Colors.black,
+                  child: Center(
+                      child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.camera_alt,
+                      size: 48,
+                      color: Colors.white,
+                    ),
+                  )),
+                ),
+              ),
+            ),
+          ),
+          TextField(),
+        ],
+      ),
     );
   }
 }

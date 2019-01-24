@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need permission to your photo library so you can battle with other battlers</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need permission to your camera so you can battle with other battlers</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need permission to your microphone so you can battle with other battlers</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
