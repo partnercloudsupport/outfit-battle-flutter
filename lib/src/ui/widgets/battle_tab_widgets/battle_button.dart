@@ -116,27 +116,29 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: Material(
-              color: Colors.black87,
-              child: InkWell(
-                onTap: () {
-                  // getImage();
-                  openImageOptions();
-                },
-                child: Container(
-                  // color: Colors.black,
-                  child: Center(
-                      child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.camera_alt,
-                      size: 48,
-                      color: Colors.white,
+            child: _image == null
+                ? Material(
+                    color: Colors.black87,
+                    child: InkWell(
+                      onTap: () {
+                        // getImage();
+                        openImageOptions();
+                      },
+                      child: Container(
+                        // color: Colors.black,
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.camera_alt,
+                            size: 48,
+                            color: Colors.white,
+                          ),
+                        )),
+                      ),
                     ),
-                  )),
-                ),
-              ),
-            ),
+                  )
+                : Image.file(_image),
           ),
           TextField(),
         ],
