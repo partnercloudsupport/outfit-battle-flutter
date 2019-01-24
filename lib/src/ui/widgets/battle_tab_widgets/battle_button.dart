@@ -138,7 +138,34 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
                       ),
                     ),
                   )
-                : Image.file(_image),
+                : Stack(
+                    children: <Widget>[
+                      Center(child: Image.file(_image)),
+                      Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: <Color>[Colors.transparent, Colors.black12],
+                            stops: [0.1, 0.5],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: 
+                        InkWell(
+                      onTap: () {
+                        // getImage();
+                        openImageOptions();
+                      }, child: Icon(
+                              Icons.camera_alt,
+                              size: 48,
+                              color: Colors.white,
+                            ),
+                        ),
+                      ),
+                    ],
+                  ),
           ),
           TextField(),
         ],
