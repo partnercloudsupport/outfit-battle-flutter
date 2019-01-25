@@ -62,7 +62,28 @@ class BattleUploadLayout extends StatefulWidget {
 }
 
 class BattleUploadLayoutState extends State<BattleUploadLayout> {
+  TextEditingController hashtagController = TextEditingController();
+  FocusNode hashtagNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+
+    hashtagController.addListener(_formatHashtagText);
+  }
+
+
+  @override
+  void dispose(){
+    hashtagController.dispose();
+    super.dispose();
+  }
+
   File _image;
+
+  _formatHashtagText() {
+    print (hashtagController.text);
+  }
 
   Future getImageFromCamera(context) async {
     print("tapped");
@@ -85,6 +106,8 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
     });
 
     Navigator.pop(context);
+
+    FocusScope.of(context).requestFocus(hashtagNode);
   }
 
   Future getImageFromGallery(context) async {
@@ -183,6 +206,14 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
             height: 10,
           ),
           TextField(
+            focusNode: hashtagNode,
+            onEditingComplete: (){},
+            onSubmitted: (value) {
+              print(value);
+            },
+            onChanged: (value){
+            },
+            controller: hashtagController,
             maxLines: null,
             autocorrect: false,
             keyboardType: TextInputType.text,
@@ -193,7 +224,6 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
                 borderSide: BorderSide(color: Colors.black87),
               ),
             ),
-
           ),
         ],
       ),
