@@ -179,7 +179,22 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
                     ),
             ),
           ),
-          TextField(),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            maxLines: null,
+            autocorrect: false,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              hintText: "Hashtag(s)",
+              helperText: "Press space to add new hastags",
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black87),
+              ),
+            ),
+
+          ),
         ],
       ),
     );
