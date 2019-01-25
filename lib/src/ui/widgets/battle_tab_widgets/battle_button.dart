@@ -68,22 +68,30 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
     print("tapped");
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
 
+     _cropImage(image);
+  }
+
+  Future<Null> _cropImage(File imageFile) async {
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: imageFile.path,
+      ratioX: 3.0,
+      ratioY: 4.0,
+    );
+
     setState(() {
-      _image = image;
+      _image = croppedFile;
     });
 
     Navigator.pop(context);
+
   }
 
   Future getImageFromGallery(context) async {
     print("tapped");
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-    setState(() {
-      _image = image;
-    });
-
-    Navigator.pop(context);
+    _cropImage(image);
+    
   }
 
   openImageOptions() {
