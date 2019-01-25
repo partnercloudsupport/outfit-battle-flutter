@@ -63,7 +63,6 @@ class BattleUploadLayout extends StatefulWidget {
 
 class BattleUploadLayoutState extends State<BattleUploadLayout> {
   TextEditingController hashtagController = TextEditingController();
-  FocusNode hashtagNode = FocusNode();
 
   @override
   void initState() {
@@ -107,7 +106,6 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
 
     Navigator.pop(context);
 
-    FocusScope.of(context).requestFocus(hashtagNode);
   }
 
   Future getImageFromGallery(context) async {
@@ -206,7 +204,6 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
             height: 10,
           ),
           TextField(
-            focusNode: hashtagNode,
             onEditingComplete: (){},
             onSubmitted: (value) {
               print(value);
