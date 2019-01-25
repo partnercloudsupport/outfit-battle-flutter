@@ -3,6 +3,7 @@ import 'package:outfit_battle/src/resources/custom_icons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
+import 'package:image_cropper/image_cropper.dart';
 
 Expanded buildBattleButton(context) {
   return Expanded(
@@ -160,7 +161,7 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
                       }, child: Icon(
                               Icons.camera_alt,
                               size: 48,
-                              color: Colors.white,
+                              color: Colors.white30,
                             ),
                         ),
                       ),
