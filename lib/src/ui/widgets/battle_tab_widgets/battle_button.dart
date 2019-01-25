@@ -76,6 +76,8 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
       sourcePath: imageFile.path,
       ratioX: 3.0,
       ratioY: 4.0,
+      toolbarColor: Colors.black45,
+      toolbarTitle: "Crop Photo",
     );
 
     setState(() {
