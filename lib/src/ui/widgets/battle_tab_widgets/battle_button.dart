@@ -127,56 +127,61 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: _image == null
-                ? Material(
-                    color: Colors.black87,
-                    child: InkWell(
-                      onTap: () {
-                        // getImage();
-                        openImageOptions();
-                      },
-                      child: Container(
-                        // color: Colors.black,
-                        child: Center(
-                            child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.camera_alt,
-                            size: 48,
-                            color: Colors.white,
-                          ),
-                        )),
-                      ),
-                    ),
-                  )
-                : Stack(
-                    children: <Widget>[
-                      Center(child: Image.file(_image)),
-                      Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: <Color>[Colors.transparent, Colors.black12],
-                            stops: [0.1, 0.5],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
-                        ),
-                      ),
-                      Center(
-                        child: 
-                        InkWell(
-                      onTap: () {
-                        // getImage();
-                        openImageOptions();
-                      }, child: Icon(
+            child: AspectRatio(
+              aspectRatio: 3/4,,
+                          child: Container(
+              child: _image == null
+                  ? Material(
+                      color: Colors.black87,
+                      child: InkWell(
+                        onTap: () {
+                          // getImage();
+                          openImageOptions();
+                        },
+                        child: Container(
+                          // color: Colors.black,
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
                               Icons.camera_alt,
                               size: 48,
-                              color: Colors.white30,
+                              color: Colors.white,
                             ),
+                          )),
                         ),
                       ),
-                    ],
-                  ),
+                    )
+                  : Stack(
+                      children: <Widget>[
+                        Center(child: Image.file(_image)),
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: <Color>[Colors.transparent, Colors.black12],
+                              stops: [0.1, 0.5],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: 
+                          InkWell(
+                        onTap: () {
+                          // getImage();
+                          openImageOptions();
+                        }, child: Icon(
+                                Icons.camera_alt,
+                                size: 48,
+                                color: Colors.white30,
+                              ),
+                          ),
+                        ),
+                      ],
+                    ),
+              ),
+            ),
           ),
           TextField(),
         ],
