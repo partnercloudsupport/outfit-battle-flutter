@@ -64,25 +64,8 @@ class BattleUploadLayout extends StatefulWidget {
 class BattleUploadLayoutState extends State<BattleUploadLayout> {
   TextEditingController hashtagController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-
-    hashtagController.addListener(_formatHashtagText);
-  }
-
-
-  @override
-  void dispose(){
-    hashtagController.dispose();
-    super.dispose();
-  }
-
   File _image;
 
-  _formatHashtagText() {
-    print (hashtagController.text);
-  }
 
   Future getImageFromCamera(context) async {
     print("tapped");
@@ -206,7 +189,23 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
           TextField(
             onEditingComplete: (){},
             onSubmitted: (value) {
-              print(value);
+              if (value.isNotEmpty) {
+                var words = value.replaceAll('#', '');
+
+                var splitValues = words.split(" ");
+                var hashtagList = <String>[];
+
+                splitValues.forEach((word) {
+                  var hashtaggedWord = "#" + word + " ";
+                  hashtagList.add(hashtaggedWord);
+                });
+
+                print(hashtagList.join().toString());
+                
+                hashtagController.text = hashtagList.join().trim();
+                
+                
+              }
             },
             onChanged: (value){
             },
@@ -216,9 +215,12 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText: "Hashtag(s)",
-              helperText: "Press space to add new hastags",
+              helperText: "Separate hashtags with space",
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black87),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
               ),
             ),
           ),
