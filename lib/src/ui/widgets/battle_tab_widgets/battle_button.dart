@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:image_cropper/image_cropper.dart';
 
 Expanded buildBattleButton(context) {
+
   return Expanded(
     flex: 2,
     child: Hero(
@@ -26,22 +27,22 @@ Expanded buildBattleButton(context) {
             context,
             CustomDialogRoute(builder: (BuildContext context) {
               return Center(
-                child: AlertDialog(
-                  content: Container(
-                    height: MediaQuery.of(context).size.height * .7,
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      children: <Widget>[
-                        new BattleUploadLayout(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        BattleUploadButton(),
-                      ],
+                  child: AlertDialog(
+                    content: Container(
+                      height:MediaQuery.of(context).size.height * .7,
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        children: <Widget>[
+                          new BattleUploadLayout(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          BattleUploadButton(),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
+                );
             }),
           );
         },
@@ -63,8 +64,25 @@ class BattleUploadLayout extends StatefulWidget {
 
 class BattleUploadLayoutState extends State<BattleUploadLayout> {
   TextEditingController hashtagController = TextEditingController();
+  FocusNode _hashtagFocus;
 
   File _image;
+
+   @override
+  void initState() {
+    super.initState();
+
+    _hashtagFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed
+    _hashtagFocus.dispose();
+    hashtagController.dispose();
+
+    super.dispose();
+  }
 
 
   Future getImageFromCamera(context) async {
@@ -123,11 +141,16 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return 
+    Expanded(
       flex: 1,
       child: Column(
         children: <Widget>[
-          Expanded(
+    //       _hashtagFocus.hasFocus
+    // ? 
+    // Text("Image") 
+    // : 
+    Expanded(
             flex: 1,
             child: AspectRatio(
               aspectRatio: 3 / 4,
@@ -196,8 +219,14 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
                 var hashtagList = <String>[];
 
                 splitValues.forEach((word) {
-                  var hashtaggedWord = "#" + word + " ";
+                  
+                  if (!(word.trim() == "")) {
+                    var hashtaggedWord = "#" + word.trim() + " ";
                   hashtagList.add(hashtaggedWord);
+                  }
+
+
+                  
                 });
 
                 print(hashtagList.join().toString());
@@ -209,6 +238,7 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
             },
             onChanged: (value){
             },
+            focusNode: _hashtagFocus,
             controller: hashtagController,
             maxLines: null,
             autocorrect: false,
@@ -275,7 +305,9 @@ class CustomDialogRoute<T> extends PageRoute<T> {
   bool get barrierDismissible => true;
 
   @override
-  Color get barrierColor => Colors.black54;
+  // Color get barrierColor => Colors.black54;
+  Color get barrierColor => Colors.black87;
+  // Color get barrierColor => Colors.green;
 
   @override
   // TODO: implement barrierLabel
