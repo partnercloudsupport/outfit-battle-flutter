@@ -271,7 +271,9 @@ class BattleUploadButton extends StatelessWidget {
       tag: 'battle-button',
       child: FloatingActionButton.extended(
         label: Text("Battle"), //
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
         foregroundColor: Colors.white,
         backgroundColor: Colors.black,
         icon: Row(
