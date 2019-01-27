@@ -5,8 +5,8 @@ import 'package:outfit_battle/src/ui/tabs/profile_tab.dart';
 import 'package:outfit_battle/src/ui/tabs/search_tab.dart';
 import 'package:outfit_battle/src/ui/tabs/shop_tab.dart';
 import 'package:outfit_battle/src/ui/widgets/bottom_nav_bar_items.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:outfit_battle/src/ui/auth/authentication_screen.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -16,6 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   int _currentIndex = 0;
   final List<Widget> _children = [
     BattlesTab(),
@@ -25,39 +26,12 @@ class _HomeState extends State<Home> {
     ProfileTab(),
   ];
 
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final GoogleSignIn googleSigIn = GoogleSignIn();
-
-  FirebaseUser fbUser;
-
   var userIsSignedIn = false;
-  FirebaseUser _firebaseUser;
 
-  void signInUser() async {
-    GoogleSignInAccount googleSignInAccount = await googleSigIn.signIn();
-    GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
-
-    FirebaseUser firebaseUser = await firebaseAuth.signInWithGoogle(
-      idToken: googleSignInAuthentication.idToken,
-      accessToken: googleSignInAuthentication.accessToken,
-    );
-
-    print(firebaseUser.toString());
-
+  void _changeSignInStatus(bool signInStatus) {
     setState(() {
-      userIsSignedIn = false;
-      _firebaseUser = firebaseUser;
+      userIsSignedIn = signInStatus;
     });
-  }
-
-  void signOutUser() {
-    setState(() {
-      googleSigIn.signOut();
-      firebaseAuth.signOut();
-    });
-
-    print("Signed out");
   }
 
   @override
@@ -68,7 +42,10 @@ class _HomeState extends State<Home> {
     const bottomPadding = 8.0;
 
     return !userIsSignedIn
-        ? buildAuthenticationScaffold()
+        ? 
+        BuildAuthenticationScaffold(
+          handleSignIn: _changeSignInStatus,
+        )
         : Scaffold(
             body: SafeArea(
                 child: Padding(
@@ -82,71 +59,6 @@ class _HomeState extends State<Home> {
               items: bottomNavigationBarItems(),
             ),
           );
-  }
-
-  Scaffold buildAuthenticationScaffold()  {
-    return Scaffold(
-          body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _firebaseUser == null
-                  ? Text("Please sign in")
-                  : Text(_firebaseUser.displayName),
-              RaisedButton(
-                child: Text("Sign In"),
-                onPressed: () {
-                  signInUser();
-                },
-              ),
-              RaisedButton(
-                child: Text("Sign Out"),
-                onPressed: () {
-                  signOutUser();
-                },
-              ),
-              Container(
-                color: Colors.black,
-                height: 24,
-                child: Text(
-                  "Email sign up",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                child: Text("Sign Up"),
-                onPressed: () async {
-                  fbUser = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                    email: "victoreronmosele@gmail.com",
-                    password: "gorimakpacb",
-                  );
-
-                  print(fbUser.toString());
-                },
-              ),
-              RaisedButton(
-                child: Text("Sign In"),
-                onPressed: () async {
-                  fbUser =
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: "victoreronmosele@gmail.com",
-                    password: "gorimakpacb",
-                  );
-
-                  print("signed in");
-                  print(fbUser.toString());
-                },
-              ),
-              RaisedButton(
-                child: Text("Sign Out"),
-                onPressed: () {
-                  firebaseAuth.signOut();
-                },
-              ),
-            ],
-          ),
-        ));
   }
 
   void onTabTapped(int index) {
