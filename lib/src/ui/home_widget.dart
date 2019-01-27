@@ -51,8 +51,11 @@ class _HomeState extends State<Home> {
   }
 
   void signOutUser() {
+    setState(() {
     googleSigIn.signOut();
-    firebaseAuth.signOut();
+    firebaseAuth.signOut();      
+        });
+    
     print("Signed out");
   }
 
