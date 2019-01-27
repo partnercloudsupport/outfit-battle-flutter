@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "444048931323",
+    "firebase_url": "https://outfit-battle-11a30.firebaseio.com",
+    "project_id": "outfit-battle-11a30",
+    "storage_bucket": "outfit-battle-11a30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444048931323:android:2ce72df050eae7aa",
+        "android_client_info": {
+          "package_name": "com.example.outfitbattle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444048931323-2ssbivlr9nc31gtjrjng1uhu21i9qgts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.outfitbattle",
+            "certificate_hash": "56953867904cff85db1110f30843a29968036bf7"
+          }
+        },
+        {
+          "client_id": "444048931323-n6p6o23ja2idrcvq9rbtn1lipa3ka18b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4fEVKZM8SwxHNQWHEiz87IxwdXztPx0M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444048931323-n6p6o23ja2idrcvq9rbtn1lipa3ka18b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

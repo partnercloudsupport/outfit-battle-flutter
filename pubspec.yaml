@@ -25,6 +25,9 @@ dependencies:
   rxdart: ^0.18.0
   image_picker: ^0.4.12+1
   image_cropper: ^0.0.9
+  firebase_auth: ^0.6.6
+  google_sign_in: ^3.3.0
+
 
 dev_dependencies:
   flutter_test:
