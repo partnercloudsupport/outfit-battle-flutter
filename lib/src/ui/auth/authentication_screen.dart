@@ -3,87 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:outfit_battle/src/resources/custom_icons.dart';
   
-
-  
-
- 
-
-  // @override
-  // style: TextStyle(fontFamily: 'Amatic', fontSize: 32.0)),
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //       body: Center(
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //       children: <Widget>[
-  //         widget.firebaseUser == null
-  //             ? Text("Please sign in")
-  //             : Text(widget.firebaseUser.displayName),
-  //         RaisedButton(
-  //           child: Text("Sign In"),
-  //           onPressed: () {
-              
-  //           },
-  //         ),
-  //         RaisedButton(
-  //           child: Text("Sign Out"),
-  //           onPressed: () {
-              
-  //           },
-  //         ),
-  //         Container(
-  //           color: Colors.black,
-  //           height: 24,
-  //           child: Text(
-  //             "Email sign up",
-  //             style: TextStyle(color: Colors.white),
-  //           ),
-  //         ),
-  //         RaisedButton(
-  //           child: Text("Sign Up"),
-  //           onPressed: () async {
-  //             widget.fbUser =
-  //                 await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //               email: "victoreronmosele@gmail.com",
-  //               password: "gorimakpacb",
-  //             );
-
-  //             print(widget.fbUser.toString());
-  //           },
-  //         ),
-  //         RaisedButton(
-  //           child: Text("Sign In"),
-  //           onPressed: () async {
-  //             widget.fbUser =
-  //                 await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //               email: "victoreronmosele@gmail.com",
-  //               password: "gorimakpacb",
-  //             );
-
-  //             print("signed in");
-  //             print(widget.fbUser.toString());
-  //           },
-  //         ),
-  //         RaisedButton(
-  //           child: Text("Sign Out"),
-  //           onPressed: () {
-  //             firebaseAuth.signOut();
-  //           },
-  //         ),
-  //       ],
-  //     ),
-  //   ));
-  // }
-
-
 class BuildAuthenticationScaffold extends StatefulWidget {
   
   final ValueChanged<bool> handleSignIn;
-  FirebaseUser fbUser;
-  FirebaseUser firebaseUser;
 
   BuildAuthenticationScaffold(
-      {Key key, @required this.handleSignIn, this.fbUser, this.firebaseUser})
+      {Key key, @required this.handleSignIn,})
       : super(key: key);
 
    @override
@@ -97,6 +22,9 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  FirebaseUser fbUser;
+  FirebaseUser firebaseUser;
 
   final signupEmailController = TextEditingController();
   final signupPasswordController = TextEditingController();
@@ -124,12 +52,12 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
     loginPasswordController.dispose();
   }
 
-   void signInUser() async {
+   void logInWithGoogle() async {
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
 
-    FirebaseUser firebaseUser = await firebaseAuth.signInWithGoogle(
+     firebaseUser = await firebaseAuth.signInWithGoogle(
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken,
     );
@@ -139,24 +67,40 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
     widget.handleSignIn(true);
   }
 
-  void signOutUser() {
-    googleSignIn.signOut();
-    firebaseAuth.signOut();
+     void logInWithEmailAndPassword() async {
+     firebaseUser = await firebaseAuth.signInWithEmailAndPassword(
+      email: loginEmailController.text,
+      password: loginPasswordController.text,
+    );
 
-    print("Signed out");
+    print(firebaseUser.toString());
+
+    widget.handleSignIn(true);
   }
+
+    void signUpWithEmailAndPassword() async {
+     firebaseUser = await firebaseAuth.createUserWithEmailAndPassword(
+      email: signupEmailController.text,
+      password: signupPasswordController.text,
+    );
+
+    print(firebaseUser.toString());
+
+    widget.handleSignIn(true);
+  }
+
+  // void signOutUser() {
+  //   googleSignIn.signOut();
+  //   firebaseAuth.signOut();
+
+  //   print("Signed out");
+  // }
 
   Widget HomePage() {
     return new Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         color: Colors.black,
-        // image: DecorationImage(
-        //   colorFilter: new ColorFilter.mode(
-        //       Colors.black.withOpacity(0.1), BlendMode.dstATop),
-        //   image: AssetImage('assets/images/mountains.jpg'),
-        //   fit: BoxFit.cover,
-        // ),
       ),
       child: new Column(
         children: <Widget>[
@@ -415,7 +359,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     textAlign: TextAlign.end,
                   ),
                   onPressed: () {
-                    signInUser();
+                    logInWithGoogle();
                   },
                 ),
               ),
@@ -434,7 +378,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     ),
                     color: Colors.black,
                     onPressed: ()  {
-                      signOutUser();
+                      logInWithEmailAndPassword();
                     },
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
@@ -568,7 +512,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                                   new Expanded(
                                     child: new FlatButton(
                                       onPressed: ()  {
-                                        signInUser();
+                                        logInWithGoogle();
                                       },
                                       padding: EdgeInsets.only(
                                         top: 20.0,
@@ -806,7 +750,9 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     ),
                     textAlign: TextAlign.end,
                   ),
-                  onPressed: () => {},
+                  onPressed: ()  {
+                    gotoLogin();
+                  },
                 ),
               ),
             ],
@@ -823,7 +769,9 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                       borderRadius: new BorderRadius.circular(30.0),
                     ),
                     color: Colors.black,
-                    onPressed: () => {},
+                    onPressed: () {
+                      signUpWithEmailAndPassword();
+                    },
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
