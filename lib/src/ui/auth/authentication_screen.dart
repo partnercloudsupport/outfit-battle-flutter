@@ -276,6 +276,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    keyboardType: TextInputType.emailAddress,
                     controller: loginEmailController,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -327,6 +328,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    keyboardType: TextInputType.text,
                     controller: loginPasswordController,
                     obscureText: true,
                     textAlign: TextAlign.left,
@@ -616,6 +618,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    keyboardType: TextInputType.emailAddress,
                     controller: signupEmailController,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -667,6 +670,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    keyboardType: TextInputType.text,
                     controller: signupPasswordController,
                     obscureText: true,
                     textAlign: TextAlign.left,
@@ -719,6 +723,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    keyboardType: TextInputType.text,
                     controller: signupConfirmPasswordController,
                     obscureText: true,
                     textAlign: TextAlign.left,
