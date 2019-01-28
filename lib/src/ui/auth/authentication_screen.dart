@@ -472,60 +472,60 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
             margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
             child: new Row(
               children: <Widget>[
-                new Expanded(
-                  child: new Container(
-                    margin: EdgeInsets.only(right: 8.0),
-                    alignment: Alignment.center,
-                    child: new Row(
-                      children: <Widget>[
-                        new Expanded(
-                          child: new FlatButton(
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0),
-                            ),
-                            color: Color(0Xff3B5998),
-                            onPressed: () => {},
-                            child: new Container(
-                              child: new Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  new Expanded(
-                                    child: new FlatButton(
-                                      onPressed: () => {},
-                                      padding: EdgeInsets.only(
-                                        top: 20.0,
-                                        bottom: 20.0,
-                                      ),
-                                      child: new Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: <Widget>[
-                                          Icon(
-                                            const IconData(0xea90,
-                                                fontFamily: 'icomoon'),
-                                            color: Colors.white,
-                                            size: 15.0,
-                                          ),
-                                          Text(
-                                            "FACEBOOK",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                // new Expanded(
+                //   child: new Container(
+                //     margin: EdgeInsets.only(right: 8.0),
+                //     alignment: Alignment.center,
+                //     child: new Row(
+                //       children: <Widget>[
+                //         new Expanded(
+                //           child: new FlatButton(
+                //             shape: new RoundedRectangleBorder(
+                //               borderRadius: new BorderRadius.circular(30.0),
+                //             ),
+                //             color: Color(0Xff3B5998),
+                //             onPressed: () => {},
+                //             child: new Container(
+                //               child: new Row(
+                //                 mainAxisAlignment: MainAxisAlignment.center,
+                //                 children: <Widget>[
+                //                   new Expanded(
+                //                     child: new FlatButton(
+                //                       onPressed: () => {},
+                //                       padding: EdgeInsets.only(
+                //                         top: 20.0,
+                //                         bottom: 20.0,
+                //                       ),
+                //                       child: new Row(
+                //                         mainAxisAlignment:
+                //                             MainAxisAlignment.spaceEvenly,
+                //                         children: <Widget>[
+                //                           Icon(
+                //                             const IconData(0xea90,
+                //                                 fontFamily: 'icomoon'),
+                //                             color: Colors.white,
+                //                             size: 15.0,
+                //                           ),
+                //                           Text(
+                //                             "FACEBOOK",
+                //                             textAlign: TextAlign.center,
+                //                             style: TextStyle(
+                //                                 color: Colors.white,
+                //                                 fontWeight: FontWeight.bold),
+                //                           ),
+                //                         ],
+                //                       ),
+                //                     ),
+                //                   ),
+                //                 ],
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 new Expanded(
                   child: new Container(
                     margin: EdgeInsets.only(left: 8.0),
@@ -552,25 +552,25 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                                         top: 20.0,
                                         bottom: 20.0,
                                       ),
-                                      child: new Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: <Widget>[
-                                          Icon(
-                                            const IconData(0xea88,
-                                                fontFamily: 'icomoon'),
-                                            color: Colors.white,
-                                            size: 15.0,
-                                          ),
-                                          Text(
-                                            "GOOGLE",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
-                                      ),
+                                      // child: new Row(
+                                        // mainAxisAlignment:
+                                        //     MainAxisAlignment.spaceEvenly,
+                                        // children: <Widget>[
+                                          // Icon(
+                                          //   const IconData(0xea88,
+                                          //       fontFamily: 'icomoon'),
+                                          //   color: Colors.white,
+                                          //   size: 15.0,
+                                          // ),
+                                          child: Text(
+                                              "GOOGLE",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                        // ],
+                                      // ),
                                     ),
                                   ),
                                 ],
@@ -854,14 +854,16 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: PageView(
-          controller: _controller,
-          physics: new AlwaysScrollableScrollPhysics(),
-          children: <Widget>[LoginPage(), HomePage(), SignupPage()],
-          scrollDirection: Axis.horizontal,
-        ),),
+    body: SingleChildScrollView(
+          child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: PageView(
+            controller: _controller,
+            physics: new AlwaysScrollableScrollPhysics(),
+            children: <Widget>[LoginPage(), HomePage(), SignupPage()],
+            scrollDirection: Axis.horizontal,
+          ),),
+    ),
     );
   }
 }
