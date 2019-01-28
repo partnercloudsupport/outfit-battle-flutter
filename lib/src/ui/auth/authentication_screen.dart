@@ -333,7 +333,6 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                 new Expanded(
                   child: TextField(
                     controller: loginEmailController,
-                    obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -674,7 +673,6 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                 new Expanded(
                   child: TextField(
                     controller: signupEmailController,
-                    obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
                       border: InputBorder.none,
