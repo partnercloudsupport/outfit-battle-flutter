@@ -77,6 +77,7 @@ import 'package:outfit_battle/src/resources/custom_icons.dart';
 
 
 class BuildAuthenticationScaffold extends StatefulWidget {
+  
   final ValueChanged<bool> handleSignIn;
   FirebaseUser fbUser;
   FirebaseUser firebaseUser;
@@ -95,12 +96,32 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
     with TickerProviderStateMixin {
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
   final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  final signupEmailController = TextEditingController();
+  final signupPasswordController = TextEditingController();
+  final signupConfirmPasswordController = TextEditingController();
+  final loginEmailController = TextEditingController();
+  final loginPasswordController = TextEditingController();
+
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    disposeTextFieldControllers();
+    super.dispose();
+  }
+
+  void disposeTextFieldControllers() {
+    signupEmailController.dispose();
+    signupConfirmPasswordController.dispose();
+    signupConfirmPasswordController.dispose();
+    loginEmailController.dispose();
+    loginPasswordController.dispose();
   }
 
    void signInUser() async {
@@ -311,6 +332,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    controller: loginEmailController,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -362,6 +384,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    controller: loginPasswordController,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -650,6 +673,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    controller: signupEmailController,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -701,6 +725,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    controller: signupPasswordController,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -752,6 +777,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
               children: <Widget>[
                 new Expanded(
                   child: TextField(
+                    controller: signupConfirmPasswordController,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
