@@ -2,24 +2,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:outfit_battle/src/resources/custom_icons.dart';
-  
+
 class BuildAuthenticationScaffold extends StatefulWidget {
-  
   final ValueChanged<bool> handleSignIn;
 
-  BuildAuthenticationScaffold(
-      {Key key, @required this.handleSignIn,})
-      : super(key: key);
+  BuildAuthenticationScaffold({
+    Key key,
+    @required this.handleSignIn,
+  }) : super(key: key);
 
-   @override
+  @override
   BuildAuthenticationScaffoldState createState() {
     return new BuildAuthenticationScaffoldState();
   }
 }
 
-class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold>
-    with TickerProviderStateMixin {
-
+class BuildAuthenticationScaffoldState
+    extends State<BuildAuthenticationScaffold> with TickerProviderStateMixin {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -32,6 +31,11 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
   final loginEmailController = TextEditingController();
   final loginPasswordController = TextEditingController();
 
+  String emailErrorMessage = "Please enter your email.";
+  String passwordErrorMessage = "Please enter your password.";
+  String confirmPasswordErrorMessage = "Please enter your password.";
+
+  bool validate = false;
 
   @override
   void initState() {
@@ -52,41 +56,62 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
     loginPasswordController.dispose();
   }
 
-   void logInWithGoogle() async {
+  void logInWithGoogle() async {
     GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
 
-     firebaseUser = await firebaseAuth.signInWithGoogle(
+    firebaseUser = await firebaseAuth
+        .signInWithGoogle(
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken,
-    );
-
-    print(firebaseUser.toString());
-
-    widget.handleSignIn(true);
+    )
+        .then((FirebaseUser user) {
+      print(firebaseUser.toString());
+      disposeTextFieldControllers();
+      widget.handleSignIn(
+        true,
+      );
+    }).catchError((e) {
+      showLicensePage(
+        context: context, 
+        applicationLegalese: "Bunch of stuff"
+      );
+      print(e);
+    });
   }
 
-     void logInWithEmailAndPassword() async {
-     firebaseUser = await firebaseAuth.signInWithEmailAndPassword(
+  void logInWithEmailAndPassword() async {
+    firebaseUser = await firebaseAuth
+        .signInWithEmailAndPassword(
       email: loginEmailController.text,
       password: loginPasswordController.text,
-    );
-
-    print(firebaseUser.toString());
-
-    widget.handleSignIn(true);
+    )
+        .then((FirebaseUser user) {
+      print(firebaseUser.toString());
+      widget.handleSignIn(true);
+    }).catchError((e) {
+      showAboutDialog(context:context, applicationLegalese: "Bunch of stuff to fill up", children: <Widget>[
+        Text("Welcome"),
+      ]);
+      print(e);
+    });
   }
 
-    void signUpWithEmailAndPassword() async {
-     firebaseUser = await firebaseAuth.createUserWithEmailAndPassword(
+  void signUpWithEmailAndPassword() async {
+    firebaseUser = await firebaseAuth
+        .createUserWithEmailAndPassword(
       email: signupEmailController.text,
       password: signupPasswordController.text,
-    );
-
-    print(firebaseUser.toString());
-
-    widget.handleSignIn(true);
+    )
+        .then((FirebaseUser user) {
+      print(firebaseUser.toString());
+      widget.handleSignIn(true);
+    }).catchError((e) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text("Please check that your details are entered correctly"),
+      duration: Duration(seconds: 3),));
+      print(e);
+    });
   }
 
   // void signOutUser() {
@@ -235,7 +260,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
             child: Center(
               child: Icon(
                 CustomIcons.swords_crossed,
-                  color: Colors.black,
+                color: Colors.black,
                 size: 50.0,
               ),
             ),
@@ -280,6 +305,9 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     controller: loginEmailController,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
+                      errorText: (validate && loginEmailController.text.isEmpty)
+                          ? emailErrorMessage
+                          : null,
                       border: InputBorder.none,
                       hintText: 'jondoe@jd.com',
                       hintStyle: TextStyle(color: Colors.grey),
@@ -333,6 +361,10 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
+                      errorText:
+                          (validate && loginPasswordController.text.isEmpty)
+                              ? passwordErrorMessage
+                              : null,
                       border: InputBorder.none,
                       hintText: '*********',
                       hintStyle: TextStyle(color: Colors.grey),
@@ -361,7 +393,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     textAlign: TextAlign.end,
                   ),
                   onPressed: () {
-                    logInWithGoogle();
+                    // logInWithGoogle();
                   },
                 ),
               ),
@@ -379,8 +411,15 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                       borderRadius: new BorderRadius.circular(30.0),
                     ),
                     color: Colors.black,
-                    onPressed: ()  {
-                      logInWithEmailAndPassword();
+                    onPressed: () {
+                      if (loginEmailController.text.isNotEmpty &&
+                          loginPasswordController.text.isNotEmpty) {
+                        logInWithEmailAndPassword();
+                      } else {
+                        setState(() {
+                          validate = true;
+                        });
+                      }
                     },
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
@@ -513,7 +552,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                                 children: <Widget>[
                                   new Expanded(
                                     child: new FlatButton(
-                                      onPressed: ()  {
+                                      onPressed: () {
                                         logInWithGoogle();
                                       },
                                       padding: EdgeInsets.only(
@@ -521,23 +560,23 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                                         bottom: 20.0,
                                       ),
                                       // child: new Row(
-                                        // mainAxisAlignment:
-                                        //     MainAxisAlignment.spaceEvenly,
-                                        // children: <Widget>[
-                                          // Icon(
-                                          //   const IconData(0xea88,
-                                          //       fontFamily: 'icomoon'),
-                                          //   color: Colors.white,
-                                          //   size: 15.0,
-                                          // ),
-                                          child: Text(
-                                              "GOOGLE",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                        // ],
+                                      // mainAxisAlignment:
+                                      //     MainAxisAlignment.spaceEvenly,
+                                      // children: <Widget>[
+                                      // Icon(
+                                      //   const IconData(0xea88,
+                                      //       fontFamily: 'icomoon'),
+                                      //   color: Colors.white,
+                                      //   size: 15.0,
+                                      // ),
+                                      child: Text(
+                                        "GOOGLE",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      // ],
                                       // ),
                                     ),
                                   ),
@@ -622,6 +661,10 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     controller: signupEmailController,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
+                      errorText:
+                          (validate && signupEmailController.text.isEmpty)
+                              ? emailErrorMessage
+                              : null,
                       border: InputBorder.none,
                       hintText: 'jondoe@jd.com',
                       hintStyle: TextStyle(color: Colors.grey),
@@ -675,6 +718,10 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
+                      errorText:
+                          (validate && signupPasswordController.text.isEmpty)
+                              ? passwordErrorMessage
+                              : null,
                       border: InputBorder.none,
                       hintText: '*********',
                       hintStyle: TextStyle(color: Colors.grey),
@@ -728,6 +775,11 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
+                      errorText: (validate &&
+                              (signupPasswordController.text !=
+                                  signupConfirmPasswordController.text))
+                          ? confirmPasswordErrorMessage
+                          : null,
                       border: InputBorder.none,
                       hintText: '*********',
                       hintStyle: TextStyle(color: Colors.grey),
@@ -755,7 +807,7 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     ),
                     textAlign: TextAlign.end,
                   ),
-                  onPressed: ()  {
+                  onPressed: () {
                     gotoLogin();
                   },
                 ),
@@ -775,7 +827,18 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
                     ),
                     color: Colors.black,
                     onPressed: () {
-                      signUpWithEmailAndPassword();
+                      if (signupEmailController.text.isNotEmpty &&
+                          (signupPasswordController.text.isNotEmpty &&
+                              signupConfirmPasswordController
+                                  .text.isNotEmpty) &&
+                          (signupPasswordController.text ==
+                              signupConfirmPasswordController.text)) {
+                        signUpWithEmailAndPassword();
+                      } else {
+                        setState(() {
+                          validate = true;
+                        });
+                      }
                     },
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
@@ -831,16 +894,17 @@ class BuildAuthenticationScaffoldState extends State<BuildAuthenticationScaffold
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: SingleChildScrollView(
-          child: Container(
+      body: SingleChildScrollView(
+        child: Container(
           height: MediaQuery.of(context).size.height,
           child: PageView(
             controller: _controller,
             physics: new AlwaysScrollableScrollPhysics(),
             children: <Widget>[LoginPage(), HomePage(), SignupPage()],
             scrollDirection: Axis.horizontal,
-          ),),
-    ),
+          ),
+        ),
+      ),
     );
   }
 }
