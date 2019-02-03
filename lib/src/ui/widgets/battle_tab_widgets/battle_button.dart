@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:outfit_battle/src/resources/custom_icons.dart';
+import 'package:outfit_battle/src/blocs/upload_bloc.dart';
+import 'package:outfit_battle/src/blocs/upload_bloc_provider.dart';
+import 'package:outfit_battle/src/ui/resources/custom_icons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
@@ -260,10 +262,35 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
   }
 }
 
-class BattleUploadButton extends StatelessWidget {
+class BattleUploadButton extends StatefulWidget {
   const BattleUploadButton({
     Key key,
   }) : super(key: key);
+
+  @override
+  BattleUploadButtonState createState() {
+    return new BattleUploadButtonState();
+  }
+}
+
+class BattleUploadButtonState extends State<BattleUploadButton> {
+
+   UploadBloc _bloc;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = UploadBlocProvider.of(context);
+  }
+
+  @override
+  void dispose() {
+    // _bloc.dispose();
+    super.dispose();
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -272,7 +299,8 @@ class BattleUploadButton extends StatelessWidget {
       child: FloatingActionButton.extended(
         label: Text("Battle"), //
         onPressed: () {
-          Navigator.of(context).pop();
+          _bloc.submit("testUrl");
+          // Navigator.of(context).pop();
         },
         foregroundColor: Colors.white,
         backgroundColor: Colors.black,

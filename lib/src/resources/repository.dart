@@ -1,9 +1,9 @@
-import 'dart:async';
-import 'movie_api_provider.dart';
-import '../models/item_model.dart';
+import 'realtime_database_provider.dart';
 
 class Repository {
-  final moviesApiProvider = MovieApiProvider();
+  final _realtimeDatabaseProvider = RealtimeDatabaseProvider();
 
-  Future<ItemModel> fetchAllMovies() => moviesApiProvider.fetchMovieList();
+  Future<void> uploadGoal(String imageUrl) =>
+      _realtimeDatabaseProvider.uploadImage(imageUrl);
+
 }
