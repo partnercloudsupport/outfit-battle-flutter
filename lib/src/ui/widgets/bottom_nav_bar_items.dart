@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:outfit_battle/src/resources/custom_icons.dart';
+import 'package:outfit_battle/src/ui/resources/custom_icons.dart';
 
 
  bottomNavigationBarItems() {
