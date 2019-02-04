@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:outfit_battle/src/blocs/upload_bloc.dart';
 import 'package:outfit_battle/src/blocs/upload_bloc_provider.dart';
 import 'package:outfit_battle/src/ui/resources/custom_icons.dart';
+import 'package:outfit_battle/src/ui/auth/custom_dialog_route.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:image_cropper/image_cropper.dart';
 
-Expanded buildBattleButton(context) {
 
+Expanded buildBattleButton(context) {
   return Expanded(
     flex: 2,
     child: Hero(
@@ -28,10 +29,11 @@ Expanded buildBattleButton(context) {
           Navigator.push(
             context,
             CustomDialogRoute(builder: (BuildContext context) {
-              return Center(
+              return UploadBlocProvider(
+                child: Center(
                   child: AlertDialog(
                     content: Container(
-                      height:MediaQuery.of(context).size.height * .7,
+                      height: MediaQuery.of(context).size.height * .7,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         children: <Widget>[
@@ -44,7 +46,8 @@ Expanded buildBattleButton(context) {
                       ),
                     ),
                   ),
-                );
+                ),
+              );
             }),
           );
         },
@@ -67,13 +70,20 @@ class BattleUploadLayout extends StatefulWidget {
 class BattleUploadLayoutState extends State<BattleUploadLayout> {
   TextEditingController hashtagController = TextEditingController();
   FocusNode _hashtagFocus;
-
+  UploadBloc _bloc;
   File _image;
 
-   @override
+  
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = UploadBlocProvider.of(context);
+  }
+
+
+  @override
   void initState() {
     super.initState();
-
     _hashtagFocus = FocusNode();
   }
 
@@ -82,10 +92,9 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
     // Clean up the focus node when the Form is disposed
     _hashtagFocus.dispose();
     hashtagController.dispose();
-
+    _bloc.dispose();
     super.dispose();
   }
-
 
   Future getImageFromCamera(context) async {
     print("tapped");
@@ -106,6 +115,8 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
     setState(() {
       _image = croppedFile;
     });
+
+    await _bloc.setImageUrl(_image.path);
 
     Navigator.pop(context);
 
@@ -143,16 +154,15 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Expanded(
+    return Expanded(
       flex: 1,
       child: Column(
         children: <Widget>[
-    //       _hashtagFocus.hasFocus
-    // ? 
-    // Text("Image") 
-    // : 
-    Expanded(
+          //       _hashtagFocus.hasFocus
+          // ?
+          // Text("Image")
+          // :
+          Expanded(
             flex: 1,
             child: AspectRatio(
               aspectRatio: 3 / 4,
@@ -166,10 +176,10 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
                         child: Container(
                           child: Center(
                               child: Icon(
-                                Icons.camera_alt,
-                                size: 48,
-                                color: Colors.black,
-                              )),
+                            Icons.camera_alt,
+                            size: 48,
+                            color: Colors.black,
+                          )),
                         ),
                       ),
                     )
@@ -179,10 +189,7 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
                           Container(
                             foregroundDecoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: <Color>[
-                                  Colors.black12,
-                                  Colors.black12
-                                ],
+                                colors: <Color>[Colors.black12, Colors.black12],
                                 stops: [0.1, 0.5],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
@@ -212,34 +219,11 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
             height: 10,
           ),
           TextField(
-            onEditingComplete: (){},
+            onEditingComplete: () {},
             onSubmitted: (value) {
-              if (value.isNotEmpty) {
-                var words = value.replaceAll('#', '');
-
-                var splitValues = words.split(" ");
-                var hashtagList = <String>[];
-
-                splitValues.forEach((word) {
-                  
-                  if (!(word.trim() == "")) {
-                    var hashtaggedWord = "#" + word.trim() + " ";
-                  hashtagList.add(hashtaggedWord);
-                  }
-
-
-                  
-                });
-
-                print(hashtagList.join().toString());
-                
-                hashtagController.text = hashtagList.join().trim();
-                
-                
-              }
+              handleHashtagField(value);
             },
-            onChanged: (value){
-            },
+            onChanged: (value) {},
             focusNode: _hashtagFocus,
             controller: hashtagController,
             maxLines: null,
@@ -260,6 +244,28 @@ class BattleUploadLayoutState extends State<BattleUploadLayout> {
       ),
     );
   }
+
+  void handleHashtagField(String value) {
+    if (value.isNotEmpty) {
+      var words = value.replaceAll('#', '');
+    
+      var splitValues = words.split(" ");
+      var hashtagList = <String>[];
+    
+      splitValues.forEach((word) {
+        if (!(word.trim() == "")) {
+          var hashtaggedWord = "#" + word.trim() + " ";
+          hashtagList.add(hashtaggedWord);
+        }
+      });
+    
+      print(hashtagList.join().toString());
+    
+      hashtagController.text = hashtagList.join().trim();
+
+      _bloc.setHashtag(hashtagList.join().trim());
+    }
+  }
 }
 
 class BattleUploadButton extends StatefulWidget {
@@ -274,8 +280,7 @@ class BattleUploadButton extends StatefulWidget {
 }
 
 class BattleUploadButtonState extends State<BattleUploadButton> {
-
-   UploadBloc _bloc;
+  UploadBloc _bloc;
 
   @override
   void didChangeDependencies() {
@@ -285,12 +290,9 @@ class BattleUploadButtonState extends State<BattleUploadButton> {
 
   @override
   void dispose() {
-    // _bloc.dispose();
+    _bloc.dispose();
     super.dispose();
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -299,7 +301,7 @@ class BattleUploadButtonState extends State<BattleUploadButton> {
       child: FloatingActionButton.extended(
         label: Text("Battle"), //
         onPressed: () {
-          _bloc.submit("testUrl");
+          _bloc.submit();
           // Navigator.of(context).pop();
         },
         foregroundColor: Colors.white,
@@ -323,44 +325,3 @@ class BattleUploadButtonState extends State<BattleUploadButton> {
   }
 }
 
-class CustomDialogRoute<T> extends PageRoute<T> {
-  CustomDialogRoute({this.builder}) : super();
-
-  final WidgetBuilder builder;
-
-  @override
-  bool get opaque => false;
-
-  @override
-  bool get barrierDismissible => false;
-
-  @override
-  // Color get barrierColor => Colors.black54;
-  Color get barrierColor => Colors.black87;
-  // Color get barrierColor => Colors.green;
-
-  @override
-  // TODO: implement barrierLabel
-  String get barrierLabel => null;
-
-  @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
-    return builder(context);
-  }
-
-  @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
-    return FadeTransition(
-      opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
-      child: child,
-    );
-  }
-
-  @override
-  bool get maintainState => true;
-
-  @override
-  Duration get transitionDuration => const Duration(milliseconds: 300);
-}
